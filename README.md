@@ -1,4 +1,4 @@
-Delivery de Comida - Funcionalidades Principales para Repartidor
+Delivery de Comida -Requerimientos Funcionales para Repartidor
 1. Gestión de Pedidos
 1.1. Asignación de Pedidos:
 Recepción de nuevos pedidos asignados automáticamente en función de la ubicación del repartidor y la disponibilidad.
