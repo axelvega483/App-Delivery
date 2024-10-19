@@ -1,5 +1,5 @@
 Delivery de Comida -Requerimientos Funcionales para Repartidor
-1. Gestión de Pedidos
+1. Gestión de Pedidos 
 1.1. Asignación de Pedidos:
   Recepción de nuevos pedidos asignados automáticamente en función de la ubicación del repartidor y la disponibilidad.
   Detalles del pedido: cliente, restaurante, dirección de entrega, productos.
