@@ -48,3 +48,11 @@
   - Inicio de Sesión:
 
        Permitir el inicio de sesión y recordar sesión para evitar la autenticación constante.
+
+
+# 6) Pantallas Aplicación
+   - Login
+   - Perfil Cadete
+   - Pedidos
+   - Historial
+   - Detalle del pedido
