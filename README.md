@@ -11,10 +11,7 @@
    - El repartidor debe poder actualizar el estado del pedido en tiempo real:
 
        Buscando pedido, En camino, Pedido entregado, Pedido cancelado
-
-  ## Notificaciones Push:
    
-   - Notificaciones push para informar al repartidor cuando se le asigne un nuevo pedido o cuando haya actualizaciones importantes.
 
   ##  Historial de Pedidos:
   
@@ -43,6 +40,8 @@
    - Actualizaciones del Pedido:
 
        Notificaciones push al cliente cuando el pedido cambia de estado.
+
+       Notificaciones push para informar al repartidor cuando se le asigne un nuevo pedido o cuando haya actualizaciones importantes.
 
 # 5) Autenticación
 
