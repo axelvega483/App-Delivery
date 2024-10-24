@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.delivery;
 
 import android.os.Bundle;
 
