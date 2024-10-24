@@ -1,4 +1,4 @@
-# Delivery de :🍻 -Requerimientos Funcionales
+# Requerimientos Funcionales Delivery de 🍻 
 # 1) Gestión de Pedidos 
    ## Asignación de Pedidos:
 
