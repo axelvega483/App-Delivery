@@ -51,7 +51,8 @@
 
 
 # 6) Pantallas Aplicación
-   - Login
+   - Login:
+        El repartido debera acceder a la aplicación mediante su usuario y contraseña otorgado por el local comercial.
    - Perfil Cadete
    - Pedidos
    - Historial
