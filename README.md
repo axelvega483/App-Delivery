@@ -2,7 +2,7 @@
 # 1) Gestión de Pedidos 
    ## Asignación de Pedidos:
 
-   - Recepción de nuevos pedidos asignados automáticamente en función de la ubicación del repartidor y la disponibilidad.
+   - Recepción de nuevos pedidos asignados automáticamente en función de la disponibilidad.
 
    - Detalles del pedido: cliente, Local Comercial, dirección de entrega, productos.
 
