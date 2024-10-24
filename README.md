@@ -10,7 +10,7 @@
 
    - El repartidor debe poder actualizar el estado del pedido en tiempo real:
 
-       Pedido aceptado, Pedido recogido, En camino, Pedido entregado
+       Buscando pedido, En camino, Pedido entregado, Pedido cancelado
 
   ## Notificaciones Push:
    
@@ -18,7 +18,7 @@
 
   ##  Historial de Pedidos:
   
-   - Listado de pedidos anteriores con detalles como fecha, hora, dirección y estado final (entregado, cancelado).
+   - Listado de pedidos anteriores con detalles como fecha, hora, dirección y estado final.
 
 # 2) Geolocalización y Rutas
 
@@ -36,19 +36,15 @@
    
   - Confirmación de Entrega:
 
-       El repartidor debe confirmar la entrega del pedido mediante la firma o código proporcionado por el cliente.
+       El repartidor debe confirmar la entrega del pedido mediante un código proporcionado por la aplicación.
 
 # 4) Notificaciones y Alertas
 
    - Actualizaciones del Pedido:
 
-       Notificaciones push al cliente cuando el pedido cambia de estado (en camino, entregado, etc.).
+       Notificaciones push al cliente cuando el pedido cambia de estado.
 
 # 5) Autenticación
-
-   - Registro y Autenticación del Repartidor:
-
-        Registro de nuevos repartidores con validación de correo electrónico y teléfono.
 
   - Inicio de Sesión:
 
