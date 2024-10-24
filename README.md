@@ -1,4 +1,13 @@
 # Requerimientos Funcionales Delivery de 🍻 
+
+# Integrantes
+-Exequiel Raineri
+-Axel Vega
+-Lucas Jimenez
+-Lucas Deibele
+-Diego Sandobal
+
+
 # 1) Gestión de Pedidos 
    ## Asignación de Pedidos:
 
