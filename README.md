@@ -33,10 +33,6 @@
         El cliente podrá seguir la ubicación del repartidor en tiempo real a través de la aplicación.
 
 # 3) Interacción con el Cliente
-
-   - Comunicación:
-
-        Funcionalidad para que el repartidor pueda contactar al cliente por teléfono o mediante mensajes en la app en caso de necesitar coordinar detalles de la entrega.
    
   - Confirmación de Entrega:
 
