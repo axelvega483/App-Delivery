@@ -64,7 +64,6 @@
       - El repartido debera acceder a la aplicación mediante su usuario y contraseña otorgado por el local comercial.
    - Perfil Cadete:
       - El sistema debera permitir al repartidor ver informacion personal del repartidos.
-      - El sistema debera permitir al repartidor ver la cantidad de pedidos entregados.
    - Pedidos
       - El sistema debera permitir al repartidor tomar un pedido.
    - Historial
