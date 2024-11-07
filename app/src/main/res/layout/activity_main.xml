@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    tools:context=".MainActivity">
+    tools:context=".Home">
 
     <TextView
         android:id="@+id/textView"
@@ -54,6 +54,7 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
+        android:onClick="iniciarSession"
         android:text="Iniciar Sesion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.425"
@@ -64,10 +65,12 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="26dp"
         android:text="Olvidaste tu contraseña?"
         android:textColor="@color/blue"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="481dp" />
+        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
