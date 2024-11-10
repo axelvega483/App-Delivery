@@ -1,19 +1,20 @@
-package com.example.delivery;
+package com.example.delivery.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
+import com.example.delivery.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Perfil#newInstance} factory method to
+ * Use the {@link PerfilFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Perfil extends Fragment {
+public class PerfilFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +25,7 @@ public class Perfil extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Perfil() {
+    public PerfilFragment() {
         // Required empty public constructor
     }
 
@@ -37,8 +38,8 @@ public class Perfil extends Fragment {
      * @return A new instance of fragment Perfil.
      */
     // TODO: Rename and change types and number of parameters
-    public static Perfil newInstance(String param1, String param2) {
-        Perfil fragment = new Perfil();
+    public static PerfilFragment newInstance(String param1, String param2) {
+        PerfilFragment fragment = new PerfilFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,5 +61,14 @@ public class Perfil extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_perfil, container, false);
+    }
+
+    public static PerfilFragment newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        PerfilFragment fragment = new PerfilFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 }

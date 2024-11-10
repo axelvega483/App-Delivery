@@ -3,4 +3,35 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#FF0000FF</color>
+    <color name="verdeBrillante">#34C759</color>
+    <color name="azulClaro">#007AFF</color>
+    <color name="naranja">#FF9500</color>
+    <color name="rojo">#FF3B30</color>
+    <color name="fondoClaro">#F2F2F7</color>
+    <color name="negro">#1C1C1E</color>
+    <color name="grisOscuro">#8E8E93</color>
+    <color name="grisClaro">#D1D1D6</color>
+<color name="celeste">#C4E1FF</color>
 </resources>
+<!--
+
+    Color Principal (Verde brillante): Para indicar estados positivos, como pedidos entregados o el inicio de un reparto.
+
+    Hex: #34C759
+    Color Secundario (Azul claro): Para destacar información general, como el estado de un pedido, la ubicación actual o las notificaciones.
+
+    Hex: #007AFF
+    Color de Alerta (Naranja): Para estados de advertencia o mensajes importantes (como retrasos o problemas con un pedido).
+
+    Hex: #FF9500
+    Color de Error (Rojo): Para indicar errores, como fallas en la entrega o información incompleta.
+
+    Hex: #FF3B30
+    Fondo y Neutros:
+
+    Fondo Claro: Hex: #F2F2F7 (para mantener un look fresco y sin distracciones).
+    Texto Principal (Negro): Hex: #1C1C1E
+    Texto Secundario (Gris Oscuro): Hex: #8E8E93
+    Divisores y Líneas (Gris Claro): Hex: #D1D1D6
+
+-->
