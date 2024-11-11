@@ -1,6 +1,7 @@
 package com.example.delivery;
 
 
+import static androidx.fragment.app.FragmentManagerKt.commit;
 import static com.example.delivery.R.*;
 
 import android.annotation.SuppressLint;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.delivery.fragments.PedidosFragment;
 import com.example.delivery.fragments.PerfilFragment;
@@ -47,8 +49,8 @@ public class PrincipalActivity extends AppCompatActivity {
                     fragment = PedidosFragment.newInstance();
                     openFragment(fragment);
                 } else if (itemId == R.id.nav_verPedidos) {
-                    fragment = VerPedidoFragment.newInstance();
-                    openFragment(fragment);
+                   /* fragment = VerPedidoFragment.newInstance( "Nombre del negocio", "Nombre del cliente");
+                    openFragment(fragment);*/
                 } else if (itemId == R.id.nav_perfil) {
                     fragment = PerfilFragment.newInstance();
                     openFragment(fragment);
@@ -59,9 +61,11 @@ public class PrincipalActivity extends AppCompatActivity {
     }
 
 
-     private void openFragment(Fragment fragment) {
-            fragmentManager.beginTransaction()
-                    .replace(R.id.frameContainer, fragment)
-                    .commit();
+    public void openFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(id.frameContainer, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
+
 }

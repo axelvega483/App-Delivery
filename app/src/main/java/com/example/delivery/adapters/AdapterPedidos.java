@@ -8,7 +8,11 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
+
+import com.example.delivery.PrincipalActivity;
 import com.example.delivery.R;
+import com.example.delivery.fragments.VerPedidoFragment;
 import com.example.delivery.model.Pedido;
 
 import java.util.ArrayList;
@@ -56,10 +60,32 @@ public class AdapterPedidos extends BaseAdapter {
         cliente.setText(pedido.getCliente().getNombre());
 
         TextView direcCliente=v.findViewById(R.id.tvDireccionCliente);
-        direcCliente.setText("Diureccion cleinte");
+        direcCliente.setText("Dirreccion cliente");
 
         TextView estado=v.findViewById(R.id.tvEstado);
         estado.setText("PENDIENTE");
+
+        // En AdapterPedidos.java
+        CardView cardView = v.findViewById(R.id.cardViewPedido);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Crear el fragmento de detalle con los datos del pedido
+                VerPedidoFragment detailFragment = VerPedidoFragment.newInstance(
+                        pedido.getNegocio().getNombre(),
+                        pedido.getCliente().getNombre(),
+                        pedido.getEstado().toString()
+                );
+
+                // Verificamos si el contexto es una instancia de PrincipalActivity
+                if (context instanceof PrincipalActivity) {
+                    // Llamamos al método openFragment desde PrincipalActivity
+                    ((PrincipalActivity) context).openFragment(detailFragment);
+                }
+            }});
         return v;
     }
+
+
+
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,9 +8,69 @@
     tools:context=".fragments.VerPedidoFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Fragmento de ver pedidos" />
+        tools:context=".fragments.VerPedidoFragment">
+
+        <TextView
+            android:id="@+id/tvDetallePedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Detalle del Pedido"
+            android:textColor="@color/negro"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvNombreNegocioDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="40dp"
+            android:padding="8dp"
+            android:text="Nombre del Negocio"
+            android:textColor="@color/negro"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDetallePedido" />
+
+        <TextView
+            android:id="@+id/tvNombreClienteDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="32dp"
+            android:padding="8dp"
+            android:text="Nombre del Cliente"
+            android:textColor="@color/negro"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNombreNegocioDetalle" />
+
+        <TextView
+            android:id="@+id/tvEstadoDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_marginTop="104dp"
+            android:layout_marginEnd="16dp"
+            android:padding="8dp"
+            android:text="Estado "
+            android:textColor="@color/negro"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Agrega más TextViews aquí para otros detalles del pedido -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
