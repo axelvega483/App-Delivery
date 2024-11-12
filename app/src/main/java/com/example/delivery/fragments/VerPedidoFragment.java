@@ -1,5 +1,6 @@
 package com.example.delivery.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,16 +8,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.delivery.PrincipalActivity;
 import com.example.delivery.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link VerPedidoFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class VerPedidoFragment extends Fragment {
+    private Context context;
     private String nombreNegocio;
     private String nombreCliente;
     private String estado;
@@ -51,11 +50,21 @@ public class VerPedidoFragment extends Fragment {
         TextView tvNombreNegocio = rootView.findViewById(R.id.tvNombreNegocioDetalle);
         TextView tvNombreCliente = rootView.findViewById(R.id.tvNombreClienteDetalle);
         TextView tvEstadoDetalle= rootView.findViewById(R.id.tvEstadoDetalle);
+        Button confirmarPedido = rootView.findViewById(R.id.ConfirmarPedido);
 
         // Asignar los datos a los TextViews
         tvNombreNegocio.setText(nombreNegocio);
         tvNombreCliente.setText(nombreCliente);
         tvEstadoDetalle.setText(estado);
+
+        confirmarPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PedidoAceptadoFragment pedidoAceptado = PedidoAceptadoFragment.newInstance();
+                ((PrincipalActivity) context).openFragment(pedidoAceptado);
+            }
+        });
+
 
         return rootView;
     }
