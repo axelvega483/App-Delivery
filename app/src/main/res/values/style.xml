@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Tema personalizado para SplashActivity -->
+    <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <!-- Deshabilitar el ícono y fondo del splash screen por defecto-->
+        <item name="android:windowSplashScreenAnimatedIcon">@android:color/transparent</item>
+        <item name="android:windowSplashScreenBackground">@android:color/transparent</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@android:color/transparent</item>
+
+        <!-- Para asegurar que el fondo de la ventana sea transparente -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="RoundedImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item><!-- O define el tamaño como "16dp" u otra medida -->
+    </style>
+
+</resources>
+
+
+<!--style en Android es un recurso que te permite definir un conjunto de propiedades visuales y de comportamiento para las vistas y componentes de la interfaz de usuario.
+Estas propiedades incluyen colores, tamaños de texto, márgenes, tipografías, bordes, entre otras. El objetivo de un estilo es permitir la reutilización de configuraciones
+comunes en varias vistas o actividades, lo que facilita el mantenimiento de la interfaz. Por ejemplo, si todas las vistas de texto (TextView) de tu aplicación deben tener
+el mismo tamaño y color de texto, puedes definir un estilo en el archivo styles.xml y luego aplicarlo a todas las vistas.
+
+Ejemplo de un estilo:
+
+<style name="MyTextStyle">
+    <item name="android:textColor">@color/myTextColor</item>
+    <item name="android:textSize">18sp</item>
+    <item name="android:fontFamily">@font/myFont</item>
+</style>
+
+Luego, aplicas este estilo a cualquier vista:
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    style="@style/MyTextStyle"
+    android:text="Hola Mundo"/>
+
+Además, puedes heredar estilos de otros para crear variaciones, permitiendo ajustes específicos sin duplicar código. Los estilos también son la base para definir
+temas en toda la aplicación, lo que da cohesión a todoeldiseño -->

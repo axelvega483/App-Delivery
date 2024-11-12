@@ -1,6 +1,5 @@
 package com.example.delivery;
 
-
 import static androidx.fragment.app.FragmentManagerKt.commit;
 import static com.example.delivery.R.*;
 
@@ -22,7 +21,6 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.example.delivery.R;
 
 public class PrincipalActivity extends AppCompatActivity {
-
 
     private BottomNavigationView btnNav;
     private Fragment fragment;

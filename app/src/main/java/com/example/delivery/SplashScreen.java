@@ -18,7 +18,6 @@ public class SplashScreen extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_splash_screen);
 
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

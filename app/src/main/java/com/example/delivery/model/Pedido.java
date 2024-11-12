@@ -20,9 +20,6 @@ public class Pedido {
         this.estado = estado;
     }
 
-  
-  
-
     public Long getId() {
         return id;
     }

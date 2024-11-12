@@ -4,22 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
-
-    <fragment
-        android:id="@+id/home"
-        android:name="com.example.delivery.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/pedidos"
-        android:name="com.example.delivery.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
-    <fragment
-        android:id="@+id/perfil"
-        android:name="com.example.delivery.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+    <activity
+        android:id="@+id/splashScreen"
+        android:name="com.example.delivery.SplashScreen"
+        android:label="activity_splash_screen"
+        tools:layout="@layout/activity_splash_screen" />
+    <activity
+        android:id="@+id/principalActivity"
+        android:name="com.example.delivery.PrincipalActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
 </navigation>

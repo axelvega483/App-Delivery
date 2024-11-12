@@ -9,12 +9,12 @@
 
     <item
         android:id="@+id/nav_verPedidos"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/pedidos"
         android:title="@string/title_dashboard" />
 
     <item
         android:id="@+id/nav_perfil"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/perfil"
         android:title="@string/title_notifications" />
 
 </menu>

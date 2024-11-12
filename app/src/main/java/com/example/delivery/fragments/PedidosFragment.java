@@ -21,11 +21,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PedidosFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class PedidosFragment extends Fragment {
 
     private ListView listView;
@@ -39,17 +34,9 @@ public class PedidosFragment extends Fragment {
     private String mParam2;
 
     public PedidosFragment() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PedidosFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static PedidosFragment newInstance(String param1, String param2) {
         PedidosFragment fragment = new PedidosFragment();
@@ -67,8 +54,6 @@ public class PedidosFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
     }
 
     @Override
@@ -76,7 +61,7 @@ public class PedidosFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflar el layout para este fragmento
         View rootView = inflater.inflate(R.layout.fragment_pedidos, container, false);
-    listView=rootView.findViewById(R.id.listView);
+        listView=rootView.findViewById(R.id.listView);
 
         ArrayList<Pedido> pedidos=new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -88,17 +73,14 @@ public class PedidosFragment extends Fragment {
                             new Date(),"Pendiente"));
         }
 
-
         AdapterPedidos adapterPedidos=new AdapterPedidos(getContext(),R.layout.item_list_pedido,pedidos);
-    listView.setAdapter(adapterPedidos);
+        listView.setAdapter(adapterPedidos);
         return rootView;
 
     }
 
     public static PedidosFragment newInstance() {
-        
         Bundle args = new Bundle();
-        
         PedidosFragment fragment = new PedidosFragment();
         fragment.setArguments(args);
         return fragment;
