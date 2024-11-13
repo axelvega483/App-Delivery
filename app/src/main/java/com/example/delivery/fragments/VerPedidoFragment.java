@@ -2,15 +2,12 @@ package com.example.delivery.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.example.delivery.PrincipalActivity;
 import com.example.delivery.R;
 
@@ -20,14 +17,20 @@ public class VerPedidoFragment extends Fragment {
     private String nombreCliente;
     private String estado;
 
-    public static VerPedidoFragment newInstance(String negocio, String cliente,String estado) {
+    public static VerPedidoFragment newInstance(String negocio, String cliente, String estado) {
         VerPedidoFragment fragment = new VerPedidoFragment();
         Bundle args = new Bundle();
         args.putString("nombreNegocio", negocio);
         args.putString("nombreCliente", cliente);
-        args.putString("estado",estado);
+        args.putString("estado", estado);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context; // Inicializar el contexto aquí
     }
 
     @Override
@@ -36,7 +39,7 @@ public class VerPedidoFragment extends Fragment {
         if (getArguments() != null) {
             nombreNegocio = getArguments().getString("nombreNegocio");
             nombreCliente = getArguments().getString("nombreCliente");
-            estado=getArguments().getString("estado");
+            estado = getArguments().getString("estado");
         }
     }
 
@@ -49,7 +52,7 @@ public class VerPedidoFragment extends Fragment {
         // Encontrar las vistas y asignar los datos
         TextView tvNombreNegocio = rootView.findViewById(R.id.tvNombreNegocioDetalle);
         TextView tvNombreCliente = rootView.findViewById(R.id.tvNombreClienteDetalle);
-        TextView tvEstadoDetalle= rootView.findViewById(R.id.tvEstadoDetalle);
+        TextView tvEstadoDetalle = rootView.findViewById(R.id.tvEstadoDetalle);
         Button confirmarPedido = rootView.findViewById(R.id.ConfirmarPedido);
 
         // Asignar los datos a los TextViews
@@ -64,7 +67,6 @@ public class VerPedidoFragment extends Fragment {
                 ((PrincipalActivity) context).openFragment(pedidoAceptado);
             }
         });
-
 
         return rootView;
     }
