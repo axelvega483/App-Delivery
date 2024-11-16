@@ -1,8 +1,10 @@
 package com.example.delivery.SQLiteOpenHelper;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import androidx.annotation.Nullable;
 
 public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
@@ -19,7 +21,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
                 "nombre TEXT, " +
                 "apellido TEXT, " +
                 "email TEXT, " +
-                "password TEXT,"+
+                "password TEXT," +
                 "dni TEXT, " +
                 "telefono TEXT)");
     }
@@ -29,6 +31,11 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
     }
 
+
+    public Cursor obtenerRepartidor(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM repartidores WHERE id = ?", new String[]{String.valueOf(id)});
+    }
 
 }
 

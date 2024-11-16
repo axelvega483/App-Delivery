@@ -1,35 +1,37 @@
 package com.example.delivery.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.example.delivery.MainActivity;
 import com.example.delivery.R;
+import com.example.delivery.fragments.viewmodel.RepartidorSharedViewModel;
+import com.example.delivery.model.Repartidor;
 
 public class PerfilFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    RepartidorSharedViewModel repartidorSharedViewModel;
+    private EditText edEmail, edPassword, edDireccion, edDni, edTelefono;
+    private TextView tvNombreCompleto;
+    private Button btnCerrarSesion;
 
     public PerfilFragment() {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
-    public static PerfilFragment newInstance(String param1, String param2) {
+    public static PerfilFragment newInstance() {
         PerfilFragment fragment = new PerfilFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -37,22 +39,55 @@ public class PerfilFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_perfil, container, false);
+        View root = inflater.inflate(R.layout.fragment_perfil, container, false);
+        init(root);
+        cargarDatos();
+        initListener();
+        return root;
     }
 
-    public static PerfilFragment newInstance() {
-        Bundle args = new Bundle();
-        PerfilFragment fragment = new PerfilFragment();
-        fragment.setArguments(args);
-        return fragment;
+
+    private void init(View root) {
+        repartidorSharedViewModel = new ViewModelProvider(requireActivity()).get(RepartidorSharedViewModel.class);
+        edDni = root.findViewById(R.id.etDni);
+        edTelefono = root.findViewById(R.id.edTelefono);
+        edPassword = root.findViewById(R.id.edPassword);
+        edEmail = root.findViewById(R.id.edEmail);
+        tvNombreCompleto = root.findViewById(R.id.tvNombreCompleto);
+        edDireccion = root.findViewById(R.id.edDireccion);
+        btnCerrarSesion = root.findViewById(R.id.btnCerrarSesion);
     }
+
+    private void cargarDatos() {
+        Repartidor repartidor = repartidorSharedViewModel.getRepartidor().getValue();
+        tvNombreCompleto.setText(repartidor.getNombre() + " " + repartidor.getApellido());
+        edDireccion.setText(repartidor.getDireccion());
+        edDni.setText(repartidor.getDni());
+        edTelefono.setText(repartidor.getTelefono());
+        edPassword.setText(repartidor.getPassword());
+        edEmail.setText(repartidor.getEmail());
+    }
+
+
+    //METODO PARA CAPTURAR EVENTOS
+    private void initListener() {
+        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                repartidorSharedViewModel.clearRepartidor();
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+    }
+
+
 }

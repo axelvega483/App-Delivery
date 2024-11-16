@@ -1,57 +1,78 @@
 package com.example.delivery;
 
-import static androidx.fragment.app.FragmentManagerKt.commit;
 import static com.example.delivery.R.*;
 
-import android.annotation.SuppressLint;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.example.delivery.SQLiteOpenHelper.AdminSQLiteOpenHelper;
 import com.example.delivery.fragments.PedidosFragment;
 import com.example.delivery.fragments.PerfilFragment;
-import com.example.delivery.fragments.VerPedidoFragment;
+import com.example.delivery.fragments.viewmodel.RepartidorSharedViewModel;
+import com.example.delivery.model.Repartidor;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-import com.example.delivery.R;
 
 public class PrincipalActivity extends AppCompatActivity {
-
+    private RepartidorSharedViewModel repartidorSharedViewModel;
     private BottomNavigationView btnNav;
-    private Fragment fragment;
-    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
-        btnNav = findViewById(R.id.btnNav);
-        fragmentManager = getSupportFragmentManager();
-        openFragment(PedidosFragment.newInstance());
+        init();
         initListener();
+        openFragment(PedidosFragment.newInstance());
     }
 
+    //INICIALIZA LOS COMPONENTES
+    private void init() {
+        btnNav = findViewById(R.id.btnNav);
 
-    private void initListener(){
+        AdminSQLiteOpenHelper db = new AdminSQLiteOpenHelper(this, "db", null, 1);
+        Cursor cursor = db.obtenerRepartidor(Integer.parseInt(getIntent().getExtras().getString("idUsuario")));
+
+        if (cursor != null && cursor.moveToFirst()) {
+            Repartidor repartidor = new Repartidor();
+            repartidor.setId((long) cursor.getLong(cursor.getColumnIndexOrThrow("id")));
+            repartidor.setNombre(cursor.getString(cursor.getColumnIndexOrThrow("nombre")));
+            repartidor.setApellido(cursor.getString(cursor.getColumnIndexOrThrow("apellido")));
+            repartidor.setEmail(cursor.getString(cursor.getColumnIndexOrThrow("email")));
+            repartidor.setPassword(cursor.getString(cursor.getColumnIndexOrThrow("password")));
+            repartidor.setDni(cursor.getString(cursor.getColumnIndexOrThrow("dni")));
+            repartidor.setTelefono(cursor.getString(cursor.getColumnIndexOrThrow("telefono")));
+
+            repartidorSharedViewModel = new ViewModelProvider(this).get(RepartidorSharedViewModel.class);
+            repartidorSharedViewModel.setRepartidor(repartidor);
+
+            cursor.close();
+        }
+    }
+
+    //CAPTURA DE EVENTOS DE BOTONES
+    private void initListener() {
         btnNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 int itemId = item.getItemId();
+
                 if (itemId == R.id.nav_principal) {
-                    fragment = PedidosFragment.newInstance();
-                    openFragment(fragment);
+                    openFragment(PedidosFragment.newInstance());
                 } else if (itemId == R.id.nav_verPedidos) {
                    /* fragment = VerPedidoFragment.newInstance( "Nombre del negocio", "Nombre del cliente");
                     openFragment(fragment);*/
                 } else if (itemId == R.id.nav_perfil) {
-                    fragment = PerfilFragment.newInstance();
-                    openFragment(fragment);
+                    openFragment(PerfilFragment.newInstance());
                 }
                 return true;
             }
@@ -60,10 +81,10 @@ public class PrincipalActivity extends AppCompatActivity {
 
 
     public void openFragment(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(id.frameContainer, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        getSupportFragmentManager().beginTransaction()
+                .replace(id.frameContainer, fragment)
+                .addToBackStack(null)
+                .commit();
     }
 
 }
