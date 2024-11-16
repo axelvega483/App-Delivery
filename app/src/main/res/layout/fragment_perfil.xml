@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -25,7 +26,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="677dp">
+                android:layout_height="683dp">
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -57,6 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20sp"
                     android:text="DNI"
+                    android:textColor="@color/negro"
                     app:layout_constraintTop_toBottomOf="@+id/tvNombreCompleto" />
 
                 <EditText
@@ -64,6 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
+                    android:textColor="@color/negro"
                     app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
                 <TextView
@@ -71,12 +74,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Dirección"
+                    android:textColor="@color/negro"
                     app:layout_constraintTop_toBottomOf="@+id/etDni" />
 
                 <EditText
                     android:id="@+id/edDireccion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/negro"
                     app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
                 <TextView
@@ -84,6 +89,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Email"
+                    android:textColor="@color/negro"
                     app:layout_constraintTop_toBottomOf="@+id/edDireccion" />
 
                 <EditText
@@ -91,6 +97,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
+                    android:textColor="@color/negro"
                     app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
                 <TextView
@@ -98,6 +105,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Telefono"
+                    android:textColor="@color/negro"
                     app:layout_constraintTop_toBottomOf="@+id/edEmail" />
 
                 <EditText
@@ -105,22 +113,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
+                    android:textColor="@color/negro"
                     app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Contraseña"
-                    app:layout_constraintTop_toBottomOf="@+id/edTelefono" />
 
-                <EditText
-                    android:id="@+id/edPassword"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPassword"
-                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                    android:hint="Contraseña"
+                    app:passwordToggleEnabled="true"
+                    android:textColor="@color/negro"
+                    app:layout_constraintTop_toBottomOf="@+id/edTelefono">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:textColor="@color/negro"
+                        app:layout_constraintTop_toBottomOf="@+id/edTelefono" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
                     android:id="@+id/btnCerrarSesion"
