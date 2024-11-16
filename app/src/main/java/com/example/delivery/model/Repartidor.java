@@ -5,9 +5,11 @@ public class Repartidor {
     private String nombre;
     private String apellido;
     private String email;
+    private String password;
     private String dni;
     private String direccion;
     private String telefono;
+
 
 
     public Repartidor(String nombre, String apellido) {
@@ -15,11 +17,12 @@ public class Repartidor {
         this.apellido = apellido;
     }
 
-    public Repartidor(Long id, String nombre, String apellido, String email, String dni, String direccion, String telefono) {
+    public Repartidor(Long id, String nombre, String apellido, String email,String password, String dni, String direccion, String telefono) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
+        this.password = password;
         this.dni = dni;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -55,6 +58,12 @@ public class Repartidor {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getDni() {

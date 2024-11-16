@@ -1,18 +1,11 @@
 package com.example.delivery;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.View;
-import android.widget.Toast;
+
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import kotlinx.coroutines.android.HandlerDispatcher;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,9 +16,5 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void iniciarSession(View view){
-        Toast.makeText(this, "Inicio de sesion", Toast.LENGTH_SHORT).show();
-        Intent intent=new Intent(this, PrincipalActivity.class);
-        startActivity(intent);
-    }
+
 }
