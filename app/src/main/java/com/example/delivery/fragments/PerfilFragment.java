@@ -18,6 +18,8 @@ import com.example.delivery.R;
 import com.example.delivery.fragments.viewmodel.RepartidorSharedViewModel;
 import com.example.delivery.model.Repartidor;
 
+import java.util.Locale;
+
 public class PerfilFragment extends Fragment {
 
     RepartidorSharedViewModel repartidorSharedViewModel;
@@ -65,7 +67,7 @@ public class PerfilFragment extends Fragment {
 
     private void cargarDatos() {
         Repartidor repartidor = repartidorSharedViewModel.getRepartidor().getValue();
-        tvNombreCompleto.setText(repartidor.getNombre() + " " + repartidor.getApellido());
+        tvNombreCompleto.setText(repartidor.getNombre().toUpperCase(Locale.ROOT) + " " + repartidor.getApellido().toUpperCase());
         edDireccion.setText(repartidor.getDireccion());
         edDni.setText(repartidor.getDni());
         edTelefono.setText(repartidor.getTelefono());
