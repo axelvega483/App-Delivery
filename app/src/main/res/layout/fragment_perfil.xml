@@ -8,25 +8,7 @@
     android:background="@color/fondoClaro"
     tools:context=".fragments.PerfilFragment">
 
-    <ScrollView
 
-        android:id="@+id/scrollView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20sp"
-            android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="683dp">
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -52,104 +34,125 @@
                     tools:ignore="MissingConstraints" />
 
 
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20sp"
-                    android:text="DNI"
-                    android:textColor="@color/negro"
-                    app:layout_constraintTop_toBottomOf="@+id/tvNombreCompleto" />
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:text="DNI"
+        android:textColor="@color/negro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.321"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNombreCompleto" />
 
-                <EditText
-                    android:id="@+id/etDni"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:textColor="@color/negro"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
+    <EditText
+        android:id="@+id/etDni"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:textColor="@color/negro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.321"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Dirección"
-                    android:textColor="@color/negro"
-                    app:layout_constraintTop_toBottomOf="@+id/etDni" />
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Dirección"
+        android:textColor="@color/negro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.321"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDni" />
 
-                <EditText
-                    android:id="@+id/edDireccion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/negro"
-                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
+    <EditText
+        android:id="@+id/edDireccion"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/negro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.321"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Email"
-                    android:textColor="@color/negro"
-                    app:layout_constraintTop_toBottomOf="@+id/edDireccion" />
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textColor="@color/negro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.321"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edDireccion" />
 
-                <EditText
-                    android:id="@+id/edEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/negro"
-                    app:layout_constraintTop_toBottomOf="@+id/textView9" />
+    <EditText
+        android:id="@+id/edEmail"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/negro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.321"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Telefono"
-                    android:textColor="@color/negro"
-                    app:layout_constraintTop_toBottomOf="@+id/edEmail" />
-
-                <EditText
-                    android:id="@+id/edTelefono"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:textColor="@color/negro"
-                    app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Contraseña"
-                    app:passwordToggleEnabled="true"
-                    android:textColor="@color/negro"
-                    app:layout_constraintTop_toBottomOf="@+id/edTelefono">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:textColor="@color/negro"
-                        app:layout_constraintTop_toBottomOf="@+id/edTelefono" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <Button
-                    android:id="@+id/btnCerrarSesion"
-                    android:layout_width="369dp"
-                    android:layout_height="wrap_content"
-                    android:text="Cerrar Sesión"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edPassword" />
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Telefono"
+        android:textColor="@color/negro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.321"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edEmail" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/edTelefono"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:textColor="@color/negro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.321"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Contraseña"
+        android:textColor="@color/negro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.303"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edTelefono"
+        app:passwordToggleEnabled="true">
 
-        </LinearLayout>
-    </ScrollView>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edPassword"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:inputType="textPassword"
+            android:textColor="@color/negro" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnCerrarSesion"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Cerrar Sesión"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
