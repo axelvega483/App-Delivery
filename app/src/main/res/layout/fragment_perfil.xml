@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -49,12 +48,6 @@
             android:inputType="number"
             android:textColor="@color/negro" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Campo Dirección con TextInputLayout -->
-
-    <!-- Campo Email con TextInputLayout -->
-
-    <!-- Campo Teléfono con TextInputLayout -->
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -131,15 +124,29 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:id="@+id/btnHistorialPedidos"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/azulClaro"
+        android:text="Historial de pedidos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"></Button>
+
+    <Button
         android:id="@+id/btnCerrarSesion"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="16dp"
         android:text="Cerrar Sesión"
+        android:backgroundTint="@color/rojo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/btnHistorialPedidos" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

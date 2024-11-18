@@ -4,90 +4,141 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fondoClaro"
     android:layout_margin="10dp"
+    android:background="@color/fondoClaro"
     tools:context=".fragments.VerPedidoFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="632dp"
+        android:layout_height="match_parent"
         tools:context=".fragments.VerPedidoFragment">
 
         <TextView
-            android:id="@+id/tvDetallePedido"
+            android:id="@+id/tvNroPedido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="Detalle del Pedido"
-            android:textColor="@color/negro"
+            android:text="Pedido #44"
+            android:textColor="#000"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvNombreNegocioDetalle"
+            android:id="@+id/tvFechaPedido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:padding="8dp"
+            android:text="23/4/24 15:30"
+            android:textColor="@color/negro"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="0dp"
+            android:background="@color/negro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNroPedido" />
+
+        <TextView
+            android:id="@+id/tvNombreNegocio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:text="Nombre del Negocio"
             android:textColor="@color/negro"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDetallePedido" />
+            app:layout_constraintTop_toBottomOf="@+id/view" />
 
         <TextView
-            android:id="@+id/tvNombreClienteDetalle"
+            android:id="@+id/tvDireccionNegocio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:padding="8dp"
+            android:text="Direccion del Negocio"
+            android:textColor="@color/negro"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreNegocio" />
+
+        <TextView
+            android:id="@+id/tvNombreCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="Nombre del Cliente"
             android:textColor="@color/negro"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNombreNegocioDetalle" />
+            app:layout_constraintTop_toBottomOf="@+id/tvDireccionNegocio" />
 
         <TextView
-            android:id="@+id/tvEstadoDetalle"
+            android:id="@+id/tvDireccionCliente"
             android:layout_width="wrap_content"
-            android:layout_height="38dp"
-            android:layout_marginTop="36dp"
-            android:padding="8dp"
-            android:text="Estado "
+            android:layout_height="wrap_content"
+            android:text="Direccion del Negocio"
+            android:textColor="@color/negro"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreCliente" />
+
+
+        <TextView
+            android:id="@+id/tvEstadoPedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Pendiente"
             android:textColor="@color/negro"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDetallePedido" />
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <ListView
+            android:id="@+id/listViewDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDireccionCliente" />
 
         <Button
-            android:id="@+id/ConfirmarPedido"
+            android:id="@+id/btnConfirmarPedido"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="244dp"
+            android:layout_marginTop="52dp"
             android:backgroundTint="@color/azulClaro"
             android:text="Confirmar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNombreClienteDetalle" />
+            app:layout_constraintTop_toBottomOf="@+id/listViewDetalle" />
 
         <Button
-            android:id="@+id/botonVolver"
+            android:id="@+id/btnVolver"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:backgroundTint="@color/rojo"
             android:text="Volver"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ConfirmarPedido" />
+            app:layout_constraintTop_toBottomOf="@+id/btnConfirmarPedido"
+            app:layout_constraintVertical_bias="0.147" />
+
 
         <!-- Agrega más TextViews aquí para otros detalles del pedido -->
 

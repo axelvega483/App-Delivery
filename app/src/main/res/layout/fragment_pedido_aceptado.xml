@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     tools:context=".fragments.PedidoAceptadoFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,39 +12,60 @@
         android:layout_height="match_parent">
 
 
-        <TextView
-            android:id="@+id/codigoPedidotextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:text="CODIGO *"
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapViewPedido"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/codigo"
+            android:id="@+id/tvCodigoEntrega"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:inputType="number"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="36dp"
+            android:text="CODIGO:"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/codigoPedidotextView" />
+            app:layout_constraintTop_toBottomOf="@+id/mapViewPedido" />
+
+        <EditText
+            android:id="@+id/edCodigoEntrega"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCodigoEntrega"
+            tools:text="33399" />
 
         <Button
-            android:id="@+id/confirmarEntrega"
+            android:id="@+id/btnConfirmarEntrega"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
             android:backgroundTint="@color/azulClaro"
             android:text="Confirmar Entrega"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edCodigoEntrega">
 
         </Button>
 
+        <Button
+            android:id="@+id/btnVolver"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/rojo"
+            android:text="Volver"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnConfirmarEntrega">
+
+        </Button>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

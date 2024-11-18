@@ -51,15 +51,15 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        View root = inflater.inflate(R.layout.fragment_login, container, false);
+        init(root);
+        initListener();
+        return root;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(view);
-        admin = new AdminSQLiteOpenHelper(getActivity(), "db", null, 1);
-        initListener();
     }
 
     //METODO PARA CONFIGURAR LOS EVENTOS DE BOTONES
@@ -79,6 +79,7 @@ public class LoginFragment extends Fragment {
 
     //METODO PARA INICIALIZAR COMPONENTES
     private void init(View view) {
+        admin = new AdminSQLiteOpenHelper(getActivity(), "db", null, 1);
         etCorreo = view.findViewById(R.id.etCorreo);
         etPassword = view.findViewById(R.id.etPassword);
         btnIniciarSesion = view.findViewById(R.id.btnIniciarSesion);

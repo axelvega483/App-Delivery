@@ -25,7 +25,7 @@ public class PerfilFragment extends Fragment {
     RepartidorSharedViewModel repartidorSharedViewModel;
     private EditText edEmail, edPassword, edDireccion, edDni, edTelefono;
     private TextView tvNombreCompleto;
-    private Button btnCerrarSesion;
+    private Button btnCerrarSesion, btnHistorialPedidos;
 
     public PerfilFragment() {
         // Required empty public constructor
@@ -48,7 +48,7 @@ public class PerfilFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_perfil, container, false);
         init(root);
-        cargarDatos();
+        setearDatos();
         initListener();
         return root;
     }
@@ -63,9 +63,10 @@ public class PerfilFragment extends Fragment {
         tvNombreCompleto = root.findViewById(R.id.tvNombreCompleto);
         edDireccion = root.findViewById(R.id.edDireccion);
         btnCerrarSesion = root.findViewById(R.id.btnCerrarSesion);
+        btnHistorialPedidos = root.findViewById(R.id.btnHistorialPedidos);
     }
 
-    private void cargarDatos() {
+    private void setearDatos() {
         Repartidor repartidor = repartidorSharedViewModel.getRepartidor().getValue();
         tvNombreCompleto.setText(repartidor.getNombre().toUpperCase(Locale.ROOT) + " " + repartidor.getApellido().toUpperCase());
         edDireccion.setText(repartidor.getDireccion());
@@ -87,6 +88,13 @@ public class PerfilFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
                 getActivity().finish();
+            }
+        });
+
+        btnHistorialPedidos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Ver historial de pedidos", Toast.LENGTH_SHORT).show();
             }
         });
     }

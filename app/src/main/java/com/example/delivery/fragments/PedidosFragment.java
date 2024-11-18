@@ -47,8 +47,13 @@ public class PedidosFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflar el layout para este fragmento
         View rootView = inflater.inflate(R.layout.fragment_pedidos, container, false);
-        listView = rootView.findViewById(R.id.listView);
+        init(rootView);
+        setearDatos();
+        return rootView;
 
+    }
+
+    private void setearDatos() {
         ArrayList<Pedido> pedidos = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             pedidos.add(
@@ -61,8 +66,11 @@ public class PedidosFragment extends Fragment {
 
         AdapterPedidos adapterPedidos = new AdapterPedidos(getContext(), R.layout.item_list_pedido, pedidos);
         listView.setAdapter(adapterPedidos);
-        return rootView;
-
     }
+
+    private void init(View rootView) {
+        listView = rootView.findViewById(R.id.listView);
+    }
+
 
 }
