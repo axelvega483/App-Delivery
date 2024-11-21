@@ -1,4 +1,4 @@
-package com.example.delivery.adapters;
+package com.example.delivery.ui.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,8 +11,9 @@ import androidx.cardview.widget.CardView;
 
 import com.example.delivery.PrincipalActivity;
 import com.example.delivery.R;
-import com.example.delivery.fragments.VerPedidoFragment;
-import com.example.delivery.model.Pedido;
+import com.example.delivery.ui.fragments.VerPedidoFragment;
+import com.example.delivery.data.model.Pedido;
+import com.example.delivery.ui.viewmodel.PedidosViewModel;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,6 @@ public class AdapterPedidos extends BaseAdapter {
     private Context context;
     private int layout;
     private ArrayList<Pedido> pedidos;
-
     public AdapterPedidos(Context context, int layout, ArrayList<Pedido> pedidos) {
         this.context = context;
         this.layout = layout;
@@ -54,10 +54,10 @@ public class AdapterPedidos extends BaseAdapter {
         nroPedido.setText(pedido.getId().toString());
 
         TextView negocio=v.findViewById(R.id.tvNombreNegocio);
-        negocio.setText(pedido.getNegocio().getNombre());
+        negocio.setText("negocio");
 
         TextView cliente=v.findViewById(R.id.tvNombreCliente);
-        cliente.setText(pedido.getCliente().getNombre());
+        cliente.setText("cliente");
 
         TextView direcCliente=v.findViewById(R.id.tvDireccionCliente);
         direcCliente.setText("Dirreccion cliente");
@@ -72,8 +72,8 @@ public class AdapterPedidos extends BaseAdapter {
             public void onClick(View v) {
                 // Crear el fragmento de detalle con los datos del pedido
                 VerPedidoFragment detailFragment = VerPedidoFragment.newInstance(
-                        pedido.getNegocio().getNombre(),
-                        pedido.getCliente().getNombre(),
+                        "nombre neegocio",
+                        "nombre cliente",
                         pedido.getEstado().toString()
                 );
 

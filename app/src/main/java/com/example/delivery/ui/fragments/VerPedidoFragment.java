@@ -1,26 +1,20 @@
-package com.example.delivery.fragments;
+package com.example.delivery.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.ListAdapter;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.delivery.PrincipalActivity;
 import com.example.delivery.R;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class VerPedidoFragment extends Fragment {
@@ -75,6 +69,8 @@ public class VerPedidoFragment extends Fragment {
         btnConfirmarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frameContainer, PedidoAceptadoFragment.newInstance())
                         .commit();

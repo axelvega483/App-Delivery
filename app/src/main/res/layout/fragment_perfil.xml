@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fondoClaro"
-    tools:context=".fragments.PerfilFragment">
+    tools:context=".ui.fragments.PerfilFragment">
 
     <ImageView
         android:id="@+id/imageView"
@@ -21,7 +21,6 @@
         android:id="@+id/tvNombreCompleto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Exequiel Raineri"
         android:textColor="@color/negro"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -147,6 +146,5 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnHistorialPedidos" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

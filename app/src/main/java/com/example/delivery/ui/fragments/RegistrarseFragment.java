@@ -1,11 +1,6 @@
-package com.example.delivery.fragments;
+package com.example.delivery.ui.fragments;
 
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,18 +11,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.delivery.R;
-import com.example.delivery.SQLiteOpenHelper.AdminSQLiteOpenHelper;
+import com.example.delivery.data.database.DatabaseApp;
+import com.example.delivery.data.model.Repartidor;
+import com.example.delivery.ui.viewmodel.RepartidorViewModel;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class RegistrarseFragment extends Fragment {
-    EditText editTextNombre, editTextApellido, editTextEmail, editTextPassword, editTextDNI, editTextTelefono;
-    Button buttonRegistrar;
-    SQLiteOpenHelper admin;
-
+    private EditText editTextNombre, editTextApellido, editTextEmail, editTextPassword, editTextDNI, editTextTelefono;
+    private Button buttonRegistrar;
+    private RepartidorViewModel repartidorViewModel;
     // Executor para manejar la tarea en segundo plano
     private ExecutorService executorService = Executors.newSingleThreadExecutor();
 
@@ -61,7 +58,7 @@ public class RegistrarseFragment extends Fragment {
 
 
     private void init(View view) {
-        admin = new AdminSQLiteOpenHelper(getActivity(), "db", null, 1);
+        repartidorViewModel = new ViewModelProvider(requireActivity()).get(RepartidorViewModel.class);
         editTextNombre = view.findViewById(R.id.editTextNombre);
         editTextApellido = view.findViewById(R.id.editTextApellido);
         editTextEmail = view.findViewById(R.id.editTextEmail);
@@ -91,36 +88,18 @@ public class RegistrarseFragment extends Fragment {
             return;
         }
 
-        // Ejecutar la tarea de registro en un hilo de fondo
-        executorService.execute(() -> {
-            SQLiteDatabase db = admin.getWritableDatabase();
+        Repartidor repartidor = new Repartidor();
+        repartidor.setNombre(nombre);
+        repartidor.setApellido(apellido);
+        repartidor.setEmail(email);
+        repartidor.setPassword(password);
+        repartidor.setTelefono(telefono);
+        repartidor.setDni(dni);
 
-            // Crear un objeto ContentValues para insertar los datos
-            ContentValues values = new ContentValues();
-            values.put("nombre", nombre);
-            values.put("apellido", apellido);
-            values.put("email", email);
-            values.put("password", password);
-            values.put("dni", dni);
-            values.put("telefono", telefono);
-
-            // Insertar los datos en la base de datos
-            long id = db.insert("repartidores", null, values);
-
-            // Usar un Handler para actualizar la UI en el hilo principal
-            new Handler(Looper.getMainLooper()).post(() -> {
-                // Verificar si la inserción fue exitosa
-                if (id == -1) {
-                    Toast.makeText(getActivity(), "Error al registrar el repartidor", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getActivity(), "Repartidor registrado correctamente", Toast.LENGTH_SHORT).show();
-                    // Regresar al fragmento anterior
-                    getFragmentManager().popBackStack();
-                }
-
-                // Cerrar la base de datos
-                db.close();
-            });
-        });
+        repartidorViewModel.save(repartidor);
+        Toast.makeText(getActivity(), "Registro exitoso", Toast.LENGTH_SHORT).show();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerView, LoginFragment.newInstance())
+                .commit();
     }
 }

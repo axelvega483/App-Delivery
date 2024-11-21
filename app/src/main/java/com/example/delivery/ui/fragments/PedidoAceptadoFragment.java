@@ -1,4 +1,4 @@
-package com.example.delivery.fragments;
+package com.example.delivery.ui.fragments;
 
 import android.os.Bundle;
 
@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.example.delivery.R;
 import com.google.android.gms.maps.MapView;
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 
 public class PedidoAceptadoFragment extends Fragment {
     private EditText edCodigoEntrega;
@@ -60,7 +59,6 @@ public class PedidoAceptadoFragment extends Fragment {
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frameContainer, PedidosFragment.newInstance())
-                        .addToBackStack(null)
                         .commit();
             }
         });

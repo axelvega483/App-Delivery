@@ -1,24 +1,43 @@
-package com.example.delivery.model;
+package com.example.delivery.data.model;
 
-import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.example.delivery.util.DateConverter;
 
 import java.util.Date;
 
+@Entity(tableName = "cliente")
+@TypeConverters({DateConverter.class})
 public class Cliente {
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
     private Long id;
     private String nombre;
     private String apellido;
     private String email;
     private String telefono;
+
+    @ColumnInfo(name = "fecha_nacimiento")
     private Date fechaNacimiento;
+
+    @Embedded
     private Direccion direccion;
+
 
     public Cliente(String nombre, String apellido) {
         this.nombre = nombre;
         this.apellido = apellido;
     }
 
-    public Cliente(Long id, String nombre, String apellido, String email, String telefono, Date fechaNacimiento, Direccion direccion) {
+    public Cliente() {
+    }
+
+    public Cliente(@NonNull Long id, String nombre, String apellido, String email, String telefono, Date fechaNacimiento, Direccion direccion) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -28,13 +47,12 @@ public class Cliente {
         this.direccion = direccion;
     }
 
-
-
+    @NonNull
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(@NonNull Long id) {
         this.id = id;
     }
 

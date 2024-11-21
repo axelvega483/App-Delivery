@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:background="@color/fondoClaro"
-    tools:context=".fragments.VerPedidoFragment">
+    tools:context=".ui.fragments.VerPedidoFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.VerPedidoFragment">
+        tools:context=".ui.fragments.VerPedidoFragment">
 
         <TextView
             android:id="@+id/tvNroPedido"

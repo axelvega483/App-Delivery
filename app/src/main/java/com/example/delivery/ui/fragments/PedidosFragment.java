@@ -1,4 +1,4 @@
-package com.example.delivery.fragments;
+package com.example.delivery.ui.fragments;
 
 import android.os.Bundle;
 
@@ -10,16 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.delivery.R;
-import com.example.delivery.adapters.AdapterPedidos;
-import com.example.delivery.model.Cliente;
-import com.example.delivery.model.Direccion;
-import com.example.delivery.model.Negocio;
-import com.example.delivery.model.Pedido;
-import com.example.delivery.model.Repartidor;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class PedidosFragment extends Fragment {
 
@@ -54,18 +44,7 @@ public class PedidosFragment extends Fragment {
     }
 
     private void setearDatos() {
-        ArrayList<Pedido> pedidos = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            pedidos.add(
-                    new Pedido((long) i,
-                            new Cliente("Cliente - " + i, "Apellido - " + i),
-                            new Negocio((long) i * 2, "Negocio - " + i * 2),
-                            new Repartidor("Exequiel", "Raineri"),
-                            new Date(), "Pendiente"));
-        }
 
-        AdapterPedidos adapterPedidos = new AdapterPedidos(getContext(), R.layout.item_list_pedido, pedidos);
-        listView.setAdapter(adapterPedidos);
     }
 
     private void init(View rootView) {

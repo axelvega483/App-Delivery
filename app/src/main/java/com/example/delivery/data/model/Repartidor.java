@@ -1,22 +1,43 @@
-package com.example.delivery.model;
+package com.example.delivery.data.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "repartidor",
+        indices = {@Index(value = {"email"}, unique = true)})
 public class Repartidor {
+    @PrimaryKey(autoGenerate = true)
     private Long id;
+    @ColumnInfo(name = "nombre")
     private String nombre;
+
+    @ColumnInfo(name = "apellido")
     private String apellido;
+
+    @NonNull
+    @ColumnInfo(name = "email")
     private String email;
+
+    @NonNull
+    @ColumnInfo(name = "password")
     private String password;
+
+    @ColumnInfo(name = "dni")
     private String dni;
+
+    @ColumnInfo(name = "direccion")
     private String direccion;
+
+    @ColumnInfo(name = "telefono")
     private String telefono;
 
-
-    public Repartidor(String nombre, String apellido) {
-        this.nombre = nombre;
-        this.apellido = apellido;
+    public Repartidor() {
     }
 
-    public Repartidor(Long id, String nombre, String apellido, String email, String password, String dni, String direccion, String telefono) {
+    public Repartidor(@NonNull Long id, String nombre, String apellido, String email, String password, String dni, String direccion, String telefono) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -25,10 +46,6 @@ public class Repartidor {
         this.dni = dni;
         this.direccion = direccion;
         this.telefono = telefono;
-    }
-
-    public Repartidor() {
-
     }
 
     public Long getId() {
@@ -94,5 +111,12 @@ public class Repartidor {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return String.format("%s\n%s\n%s\n%s\n%s\n%s",getNombre(),getApellido(),getDni(),getTelefono(),getEmail(),getPassword());
+    }
 }
+
 

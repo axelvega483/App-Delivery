@@ -1,25 +1,18 @@
-package com.example.delivery.model;
+package com.example.delivery.data.model;
+
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 public class Direccion {
-    private Long id;
     private String direccion;
     private float latitud;
     private float longitud;
 
-    public Direccion(String direccion, float latitud, float longitud) {
 
-        this.direccion = direccion;
-        this.latitud = latitud;
-        this.longitud = longitud;
+    public Direccion() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getDireccion() {
         return direccion;

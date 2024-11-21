@@ -1,7 +1,8 @@
-package com.example.delivery.fragments;
+package com.example.delivery.ui.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,17 +16,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.delivery.MainActivity;
 import com.example.delivery.R;
-import com.example.delivery.fragments.viewmodel.RepartidorSharedViewModel;
-import com.example.delivery.model.Repartidor;
+import com.example.delivery.ui.viewmodel.RepartidorViewModel;
 
 import java.util.Locale;
 
 public class PerfilFragment extends Fragment {
 
-    RepartidorSharedViewModel repartidorSharedViewModel;
+    RepartidorViewModel repartidorViewModel;
     private EditText edEmail, edPassword, edDireccion, edDni, edTelefono;
     private TextView tvNombreCompleto;
     private Button btnCerrarSesion, btnHistorialPedidos;
+
 
     public PerfilFragment() {
         // Required empty public constructor
@@ -47,6 +48,7 @@ public class PerfilFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_perfil, container, false);
+        Log.d("PerfilFragment", "onCreateView: Fragment creado");
         init(root);
         setearDatos();
         initListener();
@@ -55,7 +57,8 @@ public class PerfilFragment extends Fragment {
 
 
     private void init(View root) {
-        repartidorSharedViewModel = new ViewModelProvider(requireActivity()).get(RepartidorSharedViewModel.class);
+        repartidorViewModel = new ViewModelProvider(requireActivity()).get(RepartidorViewModel.class);
+
         edDni = root.findViewById(R.id.etDni);
         edTelefono = root.findViewById(R.id.edTelefono);
         edPassword = root.findViewById(R.id.edPassword);
@@ -67,25 +70,34 @@ public class PerfilFragment extends Fragment {
     }
 
     private void setearDatos() {
-        Repartidor repartidor = repartidorSharedViewModel.getRepartidor().getValue();
-        tvNombreCompleto.setText(repartidor.getNombre().toUpperCase(Locale.ROOT) + " " + repartidor.getApellido().toUpperCase());
-        edDireccion.setText(repartidor.getDireccion());
-        edDni.setText(repartidor.getDni());
-        edTelefono.setText(repartidor.getTelefono());
-        edPassword.setText(repartidor.getPassword());
-        edEmail.setText(repartidor.getEmail());
+        Log.e("setearDatos", "seteando datos");
+        repartidorViewModel.getRepartidorLogueado().observe(requireActivity(), repartidor -> {
+
+            if (repartidor != null) {
+                Log.e("Repartidor", "Repartidor encontrado: " + repartidor.getNombre());
+                tvNombreCompleto.setText(repartidor.getNombre().toUpperCase(Locale.ROOT) + " " + repartidor.getApellido().toUpperCase());
+                edDireccion.setText(repartidor.getDireccion());
+                edDni.setText(repartidor.getDni());
+                edTelefono.setText(repartidor.getTelefono());
+                edPassword.setText(repartidor.getPassword());
+                edEmail.setText(repartidor.getEmail());
+            } else {
+                Log.e("Repartidor", "Repartidor no encontrado.");
+            }
+        });
+
+
+        Log.e("ssss", repartidorViewModel.toString());
     }
 
 
     //METODO PARA CAPTURAR EVENTOS
     private void initListener() {
         btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
-
-                repartidorSharedViewModel.clearRepartidor();
                 Intent intent = new Intent(getActivity(), MainActivity.class);
+                repartidorViewModel.setRepartidorLogueado(null);
                 startActivity(intent);
                 getActivity().finish();
             }
