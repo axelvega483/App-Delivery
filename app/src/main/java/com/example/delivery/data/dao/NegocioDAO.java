@@ -14,6 +14,7 @@ import java.util.List;
 
 @Dao
 public interface NegocioDAO {
+
     @Query("select * from negocio")
     LiveData<List<Negocio>> findAll();
 

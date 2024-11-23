@@ -34,6 +34,8 @@ import com.example.delivery.data.model.Seguimiento;
         PedidoDetalle.class,
         Seguimiento.class
 }, version = 1)
+
+
 public abstract class DatabaseApp extends RoomDatabase {
     private static final String BD_NAME = "db_delivery_chopify";
     private static volatile DatabaseApp instance;
@@ -60,7 +62,6 @@ public abstract class DatabaseApp extends RoomDatabase {
             instance = Room.databaseBuilder(context, DatabaseApp.class, BD_NAME)
                     .fallbackToDestructiveMigration()
                     .build();
-
             insertarDatosEjemplo(context);
         }
         return instance;
