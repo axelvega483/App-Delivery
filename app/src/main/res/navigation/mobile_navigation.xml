@@ -27,9 +27,6 @@
         android:label="fragment_pedidos"
         tools:layout="@layout/fragment_pedidos" >
         <action
-            android:id="@+id/action_pedidosFragment_to_pedidoAceptadoFragment"
-            app:destination="@id/pedidoAceptadoFragment" />
-        <action
             android:id="@+id/action_pedidosFragment_to_perfilFragment"
             app:destination="@id/perfilFragment" />
         <action

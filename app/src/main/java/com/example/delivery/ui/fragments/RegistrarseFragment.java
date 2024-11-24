@@ -52,8 +52,6 @@ public class RegistrarseFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
     }
 
 
@@ -97,6 +95,7 @@ public class RegistrarseFragment extends Fragment {
         repartidor.setDni(dni);
 
         repartidorViewModel.save(repartidor);
+
         Toast.makeText(getActivity(), "Registro exitoso", Toast.LENGTH_SHORT).show();
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainerView, LoginFragment.newInstance())

@@ -70,9 +70,6 @@ public abstract class DatabaseApp extends RoomDatabase {
 
     public static void insertarDatosEjemplo(Context context) {
         DatabaseApp db = DatabaseApp.getInstance(context);
-
-
-
         //ESTE METODO ES PARA CARGAR SIMULACION DE PEDIDOS ETC
     }
 
