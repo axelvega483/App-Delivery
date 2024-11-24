@@ -58,9 +58,9 @@ public class CategoriaViewModel extends AndroidViewModel {
         if (!executorService.isShutdown()) {
             // Cerramos el executor si aún está activo.
             executorService.shutdown();
-            Log.e("CategoriaViewModel", "ExecutorService cerrado correctamente");
+            Log.e("CategoriaViewModel", "Hilo Principal esta cerrado correctamente");
         } else {
-            Log.e("CategoriaViewModel", "ExecutorService ya estaba cerrado");
+            Log.e("CategoriaViewModel", "El Hilo principal ya estaba cerrado");
         }
     }
 
@@ -85,8 +85,6 @@ public class CategoriaViewModel extends AndroidViewModel {
 
     /**
      * Guarda una nueva categoría en la base de datos.
-     *
-     * @param categoria Objeto categoría a guardar.
      */
     public void save(Categoria categoria) {
         executorService.execute(() -> {
@@ -101,8 +99,6 @@ public class CategoriaViewModel extends AndroidViewModel {
 
     /**
      * Actualiza los datos de una categoría existente.
-     *
-     * @param categoria Objeto categoría con los datos actualizados.
      */
     public void update(Categoria categoria) {
         executorService.execute(() -> {

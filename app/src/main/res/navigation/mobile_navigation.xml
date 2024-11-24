@@ -9,9 +9,73 @@
         android:name="com.example.delivery.SplashScreen"
         android:label="activity_splash_screen"
         tools:layout="@layout/activity_splash_screen" />
-    <activity
-        android:id="@+id/principalActivity"
-        android:name="com.example.delivery.PrincipalActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.delivery.ui.fragments.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_pedidosFragment"
+            app:destination="@id/pedidosFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_registrarseFragment"
+            app:destination="@id/registrarseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pedidosFragment"
+        android:name="com.example.delivery.ui.fragments.PedidosFragment"
+        android:label="fragment_pedidos"
+        tools:layout="@layout/fragment_pedidos" >
+        <action
+            android:id="@+id/action_pedidosFragment_to_pedidoAceptadoFragment"
+            app:destination="@id/pedidoAceptadoFragment" />
+        <action
+            android:id="@+id/action_pedidosFragment_to_perfilFragment"
+            app:destination="@id/perfilFragment" />
+        <action
+            android:id="@+id/action_pedidosFragment_to_verPedidoFragment"
+            app:destination="@id/verPedidoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrarseFragment"
+        android:name="com.example.delivery.ui.fragments.RegistrarseFragment"
+        android:label="fragment_registrarse"
+        tools:layout="@layout/fragment_registrarse" >
+        <action
+            android:id="@+id/action_registrarseFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.example.delivery.ui.fragments.PerfilFragment"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_perfilFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_perfilFragment_to_pedidosFragment"
+            app:destination="@id/pedidosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verPedidoFragment"
+        android:name="com.example.delivery.ui.fragments.VerPedidoFragment"
+        android:label="fragment_ver_pedido"
+        tools:layout="@layout/fragment_ver_pedido" >
+        <action
+            android:id="@+id/action_verPedidoFragment_to_pedidoAceptadoFragment2"
+            app:destination="@id/pedidoAceptadoFragment2" />
+        <action
+            android:id="@+id/action_verPedidoFragment_to_perfilFragment2"
+            app:destination="@id/perfilFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pedidoAceptadoFragment2"
+        android:name="com.example.delivery.ui.fragments.PedidoAceptadoFragment"
+        android:label="fragment_pedido_aceptado"
+        tools:layout="@layout/fragment_pedido_aceptado" >
+        <action
+            android:id="@+id/action_pedidoAceptadoFragment2_to_pedidosFragment"
+            app:destination="@id/pedidosFragment" />
+    </fragment>
 </navigation>
