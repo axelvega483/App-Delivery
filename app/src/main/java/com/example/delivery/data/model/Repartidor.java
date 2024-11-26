@@ -6,9 +6,11 @@ import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "repartidor",
         indices = {@Index(value = {"email"}, unique = true)})
-public class Repartidor {
+public class Repartidor{
     @PrimaryKey(autoGenerate = true)
     private Long id;
     @ColumnInfo(name = "nombre")
@@ -46,6 +48,17 @@ public class Repartidor {
         this.dni = dni;
         this.direccion = direccion;
         this.telefono = telefono;
+    }
+
+    public Repartidor(String nombre, String apellido, String direccion, String dni, String telefono, String password, String email) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.password = password;
+        this.dni = dni;
+        this.direccion = direccion;
+        this.telefono = telefono;
+
     }
 
     public Long getId() {

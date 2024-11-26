@@ -17,16 +17,14 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.delivery.MainActivity;
 import com.example.delivery.R;
 import com.example.delivery.ui.viewmodel.RepartidorViewModel;
-
 import java.util.Locale;
 
 public class PerfilFragment extends Fragment {
 
-    RepartidorViewModel repartidorViewModel;
+    private RepartidorViewModel repartidorViewModel;
     private EditText edEmail, edPassword, edDireccion, edDni, edTelefono;
     private TextView tvNombreCompleto;
     private Button btnCerrarSesion, btnHistorialPedidos;
-
 
     public PerfilFragment() {
         // Required empty public constructor
@@ -50,15 +48,18 @@ public class PerfilFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_perfil, container, false);
         Log.d("PerfilFragment", "onCreateView: Fragment creado");
         init(root);
-        setearDatos();
-        initListener();
+        initListener(); // Inicializa los listeners aquí
         return root;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        repartidorViewModel = new ViewModelProvider(requireActivity()).get(RepartidorViewModel.class);
+        setearDatos(); // Llama a setearDatos cuando el fragmento está en estado STARTED
+    }
 
     private void init(View root) {
-        repartidorViewModel = new ViewModelProvider(requireActivity()).get(RepartidorViewModel.class);
-
         edDni = root.findViewById(R.id.etDni);
         edTelefono = root.findViewById(R.id.edTelefono);
         edPassword = root.findViewById(R.id.edPassword);
@@ -71,10 +72,18 @@ public class PerfilFragment extends Fragment {
 
     private void setearDatos() {
         Log.e("setearDatos", "seteando datos");
-        repartidorViewModel.getRepartidorLogueado().observe(requireActivity(), repartidor -> {
 
+        if (repartidorViewModel.getRepartidorLogueado().getValue() == null) {
+            Log.e("Repartidor", "Repartidor aún no disponible");
+            // Puedes mostrar un mensaje o tomar otra acción
+        }
+
+        repartidorViewModel.getRepartidorLogueado().observe(getViewLifecycleOwner(), repartidor -> {
             if (repartidor != null) {
                 Log.e("Repartidor", "Repartidor encontrado: " + repartidor.getNombre());
+
+
+
                 tvNombreCompleto.setText(repartidor.getNombre().toUpperCase(Locale.ROOT) + " " + repartidor.getApellido().toUpperCase());
                 edDireccion.setText(repartidor.getDireccion());
                 edDni.setText(repartidor.getDni());
@@ -86,12 +95,10 @@ public class PerfilFragment extends Fragment {
             }
         });
 
-
         Log.e("ssss", repartidorViewModel.toString());
     }
 
-
-    //METODO PARA CAPTURAR EVENTOS
+    // Método para capturar eventos
     private void initListener() {
         btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +117,4 @@ public class PerfilFragment extends Fragment {
             }
         });
     }
-
-
 }

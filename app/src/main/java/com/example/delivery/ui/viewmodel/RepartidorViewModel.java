@@ -52,8 +52,13 @@ public class RepartidorViewModel extends AndroidViewModel {
     }
 
     public void setRepartidorLogueado(Repartidor repartidor) {
-        repartidorLogueado.setValue(repartidor);
-        //Establece el valor del repartidor logueado y notifica a los observadores.
+        if (repartidor != null) {
+            Log.e("setRepa", repartidor.toString());
+            repartidorLogueado.setValue(repartidor);
+            Log.e("setRepaLogueado", repartidorLogueado.getValue().toString());
+        } else {
+            Log.e("RepartidorViewModel", "Intento de establecer un repartidor nulo");
+        }
     }
 
 

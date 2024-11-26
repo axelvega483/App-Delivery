@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,7 @@ public class LoginFragment extends Fragment {
 
     //METODO PARA CONFIGURAR LOS EVENTOS DE BOTONES
     private void initListener() {
-        repartidorViewModel = new ViewModelProvider(requireActivity()).get(RepartidorViewModel.class);
+
         btnIniciarSesion.setOnClickListener(v -> loginUsuario());
 
         btnRegistrarse.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +75,7 @@ public class LoginFragment extends Fragment {
 
     //METODO PARA INICIALIZAR COMPONENTES
     private void init(View view) {
+        repartidorViewModel = new ViewModelProvider(requireActivity()).get(RepartidorViewModel.class);
         etCorreo = view.findViewById(R.id.etCorreo);
         etPassword = view.findViewById(R.id.etPassword);
         btnIniciarSesion = view.findViewById(R.id.btnIniciarSesion);
@@ -96,8 +98,19 @@ public class LoginFragment extends Fragment {
                 Toast.makeText(getActivity(), "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
             } else {
                 repartidorViewModel.setRepartidorLogueado(repartidor);
+                Log.e("setRepaLogueado", repartidorViewModel.getRepartidorLogueado().getValue().toString());
                 Toast.makeText(getActivity(), "Bienvenido " + repartidor.getNombre(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), PrincipalActivity.class);
+
+                // Pasar cada propiedad del objeto Repartidor como un extra en el Intent
+                intent.putExtra("nombre", repartidor.getNombre());
+                intent.putExtra("apellido", repartidor.getApellido());
+                intent.putExtra("direccion", repartidor.getDireccion());
+                intent.putExtra("dni", repartidor.getDni());
+                intent.putExtra("telefono", repartidor.getTelefono());
+                intent.putExtra("password", repartidor.getPassword());
+                intent.putExtra("email", repartidor.getEmail());
+
                 startActivity(intent);
             }
         });
