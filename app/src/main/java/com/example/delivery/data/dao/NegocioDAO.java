@@ -22,11 +22,14 @@ public interface NegocioDAO {
     LiveData<Negocio> findById(Long id);
 
     @Insert
-    void save(Negocio... negocios);
+    Long save(Negocio negocios);
 
     @Delete
     void delete(Negocio negocio);
 
     @Update()
     void update(Negocio negocio);
+
+    @Query("SELECT * FROM negocio WHERE id = :negocioId")
+    LiveData<Negocio> getNegocioById(Long negocioId);
 }

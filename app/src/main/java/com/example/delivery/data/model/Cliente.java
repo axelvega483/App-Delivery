@@ -37,8 +37,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(@NonNull Long id, String nombre, String apellido, String email, String telefono, Date fechaNacimiento, Direccion direccion) {
-        this.id = id;
+    public Cliente( String nombre, String apellido, String email, String telefono, Date fechaNacimiento, Direccion direccion) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;

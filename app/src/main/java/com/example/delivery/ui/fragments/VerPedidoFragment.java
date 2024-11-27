@@ -13,25 +13,39 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.delivery.R;
+import com.example.delivery.data.dao.PedidoDAO;
+import com.example.delivery.data.database.DatabaseApp;
+import com.example.delivery.data.model.Pedido;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class VerPedidoFragment extends Fragment {
     private TextView tvNroPedido, tvNombreNegocio, tvDireccionNegocio, tvNombreCliente, tvDireccionCliente, tvFechaPedido, tvEstadoPedido;
     private ListView listViewDetalle;
     private Button btnConfirmarPedido, btnVolver;
+    private DatabaseApp db;
+    private PedidoDAO pedidoDAO;
+
+    private ArrayList<Pedido> pedido;
 
     private Context context;
+    private String id;
     private String nombreNegocio;
+    private String direccionNegocio;
     private String nombreCliente;
+    private String direccionCliente;
     private String estado;
 
-    public static VerPedidoFragment newInstance(String negocio, String cliente, String estado) {
+    public static VerPedidoFragment newInstance(String id,String negocio,String direccionNegocio ,String cliente,String direccionCliente, String estado) {
         VerPedidoFragment fragment = new VerPedidoFragment();
         Bundle args = new Bundle();
+        args.putString("id", id);
         args.putString("nombreNegocio", negocio);
+        args.putString("direccionNegocio", direccionNegocio);
         args.putString("nombreCliente", cliente);
+        args.putString("direccionCliente", direccionCliente);
         args.putString("estado", estado);
         fragment.setArguments(args);
         return fragment;
@@ -55,8 +69,11 @@ public class VerPedidoFragment extends Fragment {
         // Inflar el layout para este fragmento
         View rootView = inflater.inflate(R.layout.fragment_ver_pedido, container, false);
         if (getArguments() != null) {
+            id = getArguments().getString("id");
             nombreNegocio = getArguments().getString("nombreNegocio");
+            direccionNegocio = getArguments().getString("direccionNegocio");
             nombreCliente = getArguments().getString("nombreCliente");
+            direccionCliente = getArguments().getString("direccionCliente");
             estado = getArguments().getString("estado");
         }
         init(rootView);
@@ -89,13 +106,13 @@ public class VerPedidoFragment extends Fragment {
 
     private void setearDatos() {
         SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        tvNroPedido.setText("Pedido #" + 33);
+        tvNroPedido.setText(id);
         tvFechaPedido.setText(sf.format(new Date()));
         tvEstadoPedido.setText(estado);
         tvNombreNegocio.setText(nombreNegocio);
-        tvDireccionNegocio.setText("Belgrano 33");
+        tvDireccionNegocio.setText(direccionNegocio);
         tvNombreCliente.setText(nombreCliente);
-        tvDireccionCliente.setText("Quintana 32");
+        tvDireccionCliente.setText(direccionCliente);
 
     }
 

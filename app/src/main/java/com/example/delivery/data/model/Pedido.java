@@ -44,8 +44,7 @@ public class Pedido {
     private Date fechaPedido;
     private String estado;
 
-    public Pedido(Long id, Long clienteId, Long negocioId, Long repartidorId, Date fechaPedido, String estado) {
-        this.id = id;
+    public Pedido( Long clienteId, Long negocioId, Long repartidorId, Date fechaPedido, String estado) {
         this.clienteId = clienteId;
         this.negocioId = negocioId;
         this.repartidorId = repartidorId;

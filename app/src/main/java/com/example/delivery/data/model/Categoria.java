@@ -12,8 +12,7 @@ public class Categoria {
     private Long id;
     private String nombre;
 
-    public Categoria(@NonNull Long id, String nombre) {
-        this.id = id;
+    public Categoria( String nombre) {
         this.nombre = nombre;
     }
 

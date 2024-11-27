@@ -22,7 +22,7 @@ public interface RepartidorDAO {
     LiveData<Repartidor> findById(Long id);
 
     @Insert
-    void save(Repartidor... repartidors);
+    void save(Repartidor repartidors);
 
     @Delete
     void delete(Repartidor repartidor);

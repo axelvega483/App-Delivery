@@ -39,16 +39,6 @@ public class Repartidor{
     public Repartidor() {
     }
 
-    public Repartidor(@NonNull Long id, String nombre, String apellido, String email, String password, String dni, String direccion, String telefono) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.password = password;
-        this.dni = dni;
-        this.direccion = direccion;
-        this.telefono = telefono;
-    }
 
     public Repartidor(String nombre, String apellido, String direccion, String dni, String telefono, String password, String email) {
         this.nombre = nombre;

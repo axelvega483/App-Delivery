@@ -7,7 +7,6 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.delivery.data.model.Cliente;
 import com.example.delivery.data.model.PedidoDetalle;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public interface PedidoDetalleDAO {
     LiveData<PedidoDetalle> findById(Long id);
 
     @Insert
-    void save(PedidoDetalle... pedidoDetalles);
+    Long save(PedidoDetalle pedidoDetalles);
 
     @Delete
     void delete(PedidoDetalle pedidoDetalle);

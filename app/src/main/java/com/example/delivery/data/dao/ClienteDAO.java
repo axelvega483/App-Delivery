@@ -20,12 +20,17 @@ public interface ClienteDAO {
     LiveData<Cliente> findById(Long id);
 
     @Insert
-    void save(Cliente... clientes);
+    Long save(Cliente clientes);
 
     @Delete
     void delete(Cliente cliente);
 
     @Update()
     void update(Cliente cliente);
+
+    @Query("SELECT * FROM cliente WHERE id = :clienteId")
+    LiveData<Cliente> getClienteById(Long clienteId);
+
+
 
 }

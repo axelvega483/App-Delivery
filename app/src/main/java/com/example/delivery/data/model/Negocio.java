@@ -19,8 +19,7 @@ public class Negocio {
     private boolean estado;
 
 
-    public Negocio(@NonNull Long id, String nombre, String telefono, String email, String cuit, Direccion direccion, boolean estado) {
-        this.id = id;
+    public Negocio( String nombre, String telefono, String email, String cuit, Direccion direccion, boolean estado) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.email = email;

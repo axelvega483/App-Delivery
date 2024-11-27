@@ -7,7 +7,6 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.delivery.data.model.Cliente;
 import com.example.delivery.data.model.Producto;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public interface ProductoDAO {
     LiveData<Producto> findById(Long id);
 
     @Insert
-    void save(Producto... productos);
+    Long save(Producto productos);
 
     @Delete
     void delete(Producto producto);

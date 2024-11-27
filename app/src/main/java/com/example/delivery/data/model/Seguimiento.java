@@ -29,8 +29,7 @@ public class Seguimiento {
     @ColumnInfo(name = "fecha_actualizacion")
     private Date fechaActualizacion;
 
-    public Seguimiento(Long id, Long pedidoId, String estado, Date fechaActualizacion) {
-        this.id = id;
+    public Seguimiento(Long pedidoId, String estado, Date fechaActualizacion) {
         this.pedidoId = pedidoId;
         this.estado = estado;
         this.fechaActualizacion = fechaActualizacion;

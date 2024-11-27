@@ -21,7 +21,7 @@ public interface SeguimientoDAO {
     LiveData<Seguimiento> findById(Long id);
 
     @Insert
-    void save(Seguimiento... seguimientos);
+    void save(Seguimiento seguimientos);
 
     @Delete
     void delete(Seguimiento seguimiento);

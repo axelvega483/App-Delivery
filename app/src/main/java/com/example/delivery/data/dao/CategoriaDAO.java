@@ -8,7 +8,6 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.delivery.data.model.Categoria;
-import com.example.delivery.data.model.Cliente;
 
 import java.util.List;
 
@@ -21,7 +20,7 @@ public interface CategoriaDAO {
     LiveData<Categoria> findById(Long id);
 
     @Insert
-    void save(Categoria... categorias);
+    Long save(Categoria categorias);
 
     @Delete
     void delete(Categoria categoria);

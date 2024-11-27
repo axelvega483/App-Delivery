@@ -20,7 +20,7 @@ public interface PedidoDAO {
     LiveData<Pedido> findById(Long id);
 
     @Insert
-    void save(Pedido... pedidos);
+    Long save(Pedido pedidos);
 
     @Delete
     void delete(Pedido pedido);
@@ -30,4 +30,7 @@ public interface PedidoDAO {
 
     @Update()
     void update(Pedido pedido);
+
+    @Query("select * from pedido")
+    List<Pedido> findAllList();
 }

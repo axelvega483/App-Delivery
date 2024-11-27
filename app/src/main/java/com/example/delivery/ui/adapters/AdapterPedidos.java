@@ -20,11 +20,13 @@ import java.util.ArrayList;
 public class AdapterPedidos extends BaseAdapter {
     private Context context;
     private int layout;
+    private PedidosViewModel pedidosViewModel;
     private ArrayList<Pedido> pedidos;
-    public AdapterPedidos(Context context, int layout, ArrayList<Pedido> pedidos) {
+    public AdapterPedidos(Context context, int layout, ArrayList<Pedido> pedidos, PedidosViewModel pedidosViewModel) {
         this.context = context;
         this.layout = layout;
         this.pedidos = pedidos;
+        this.pedidosViewModel = pedidosViewModel;
     }
 
     @Override
@@ -54,13 +56,31 @@ public class AdapterPedidos extends BaseAdapter {
         nroPedido.setText(pedido.getId().toString());
 
         TextView negocio=v.findViewById(R.id.tvNombreNegocio);
-        negocio.setText("negocio");
+        pedidosViewModel.getNegocioById(pedido.getNegocioId()).observe((PrincipalActivity) context, negocioData -> {
+            if (negocioData != null && negocioData.getNombre() != null) {
+                negocio.setText(negocioData.getNombre());
+            }
+        });
+        TextView direccionNegocio=v.findViewById(R.id.tvDireccionNegocio1);
+        pedidosViewModel.getNegocioById(pedido.getNegocioId()).observe((PrincipalActivity) context, negocioData -> {
+            if (negocioData != null && negocioData.getNombre() != null) {
+                direccionNegocio.setText(negocioData.getDireccion().getDireccion());
+            }
+        });
 
         TextView cliente=v.findViewById(R.id.tvNombreCliente);
-        cliente.setText("cliente");
+        pedidosViewModel.getClienteById(pedido.getClienteId()).observe((PrincipalActivity) context, clienteData -> {
+            if (clienteData != null && clienteData.getNombre() != null) {
+                cliente.setText(clienteData.getNombre());
+            }
+        });
 
         TextView direcCliente=v.findViewById(R.id.tvDireccionCliente);
-        direcCliente.setText("Dirreccion cliente");
+        pedidosViewModel.getClienteById(pedido.getClienteId()).observe((PrincipalActivity) context,direcClienteData -> {
+            if (direcClienteData != null && direcClienteData.getDireccion() != null) {
+                direcCliente.setText(direcClienteData.getDireccion().getDireccion());
+            }
+        });
 
         TextView estado=v.findViewById(R.id.tvEstado);
         estado.setText("PENDIENTE");
@@ -72,8 +92,11 @@ public class AdapterPedidos extends BaseAdapter {
             public void onClick(View v) {
                 // Crear el fragmento de detalle con los datos del pedido
                 VerPedidoFragment detailFragment = VerPedidoFragment.newInstance(
-                        "nombre neegocio",
-                        "nombre cliente",
+                        pedido.getId().toString(),
+                        negocio.getText().toString(),
+                        direccionNegocio.getText().toString(),
+                        cliente.getText().toString(),
+                        direcCliente.getText().toString(),
                         pedido.getEstado().toString()
                 );
 
