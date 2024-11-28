@@ -7,7 +7,9 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.delivery.data.model.Pedido;
 import com.example.delivery.data.model.PedidoDetalle;
+import com.example.delivery.data.model.Producto;
 
 import java.util.List;
 
@@ -27,4 +29,10 @@ public interface PedidoDetalleDAO {
 
     @Update()
     void update(PedidoDetalle pedidoDetalle);
+
+    @Query("SELECT * FROM producto WHERE id=:productoId")
+    LiveData<Producto> getProductoById(Long productoId);
+
+    @Query("select * from pedido_detalle")
+    List<PedidoDetalle> findAllList();
 }

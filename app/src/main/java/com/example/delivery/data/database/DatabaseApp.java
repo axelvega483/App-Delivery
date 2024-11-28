@@ -84,42 +84,39 @@ public abstract class DatabaseApp extends RoomDatabase {
             cliente.setTelefono("123456789");
 
             Direccion direccionCliente = new Direccion();
-            direccionCliente.setDireccion("Av. Rivadavia 690");
-            direccionCliente.setLatitud(-27.7854466f);
-            direccionCliente.setLongitud(-64.2693668f);
+            direccionCliente.setDireccion("Av. Roca Sur 930");
+            direccionCliente.setLatitud(-27.7878508f);
+            direccionCliente.setLongitud(-64.2537045f);
 
-            Log.e("Direccion",direccionCliente.toString());
+            Log.e("Direccion", direccionCliente.toString());
 
             cliente.setDireccion(direccionCliente);
-            Long clienteId=db.clienteDAO().save(cliente);
+            Long clienteId = db.clienteDAO().save(cliente);
             cliente.setId(clienteId);
 
             Log.e("Cliente", cliente.toString());
 
-            Categoria categoria = new Categoria();
-            categoria.setNombre("Vinos");
-           Long categoriaId= db.categoriaDAO().save(categoria);
-            categoria.setId(categoriaId);
-            Log.e("Categoria", categoria.toString());
-
-
 
             Negocio negocio = new Negocio();
-            negocio.setNombre("Maxikiosco");
+            negocio.setNombre("Antares");
             Direccion direccionNegocio = new Direccion();
-            direccionNegocio.setDireccion("Av. Rivadavia 10");
-            direccionNegocio.setLatitud(-27.7854466f);
-            direccionNegocio.setLongitud(-64.2693668f);
+            direccionNegocio.setDireccion("Pellegrini 480");
             negocio.setDireccion(direccionNegocio);
-           Long negocioId= db.negocioDAO().save(negocio);
+            Long negocioId = db.negocioDAO().save(negocio);
             negocio.setId(negocioId);
             Log.e("Negocio", negocio.toString());
 
+            Categoria categoria = new Categoria();
+            categoria.setNombre("Cerveza");
+            Long categoriaId = db.categoriaDAO().save(categoria);
+            categoria.setId(categoriaId);
+            Log.e("Categoria", categoria.toString());
+
             Producto producto = new Producto();
-            producto.setNombre("Vino");
-            producto.setPrecio(100);
+            producto.setNombre("Cerveza Rubia");
+            producto.setPrecio(1500);
             producto.setCategoriaId(categoria.getId());
-           Long productoId= db.productoDAO().save(producto);
+            Long productoId = db.productoDAO().save(producto);
             producto.setId(productoId);
             Log.e("Producto", producto.toString());
 
@@ -128,15 +125,15 @@ public abstract class DatabaseApp extends RoomDatabase {
             pedido.setNegocioId(negocio.getId());
             pedido.setFechaPedido(new Date());
             pedido.setEstado("Pendiente");
-            Long pedidoId= db.pedidoDAO().save(pedido);
+            Long pedidoId = db.pedidoDAO().save(pedido);
             pedido.setId(pedidoId);
             Log.e("Pedido", pedido.toString());
 
             PedidoDetalle pedidoDetalle = new PedidoDetalle();
             pedidoDetalle.setPedidoId(pedido.getId());
             pedidoDetalle.setProductoId(producto.getId());
-            pedidoDetalle.setCantidad(1);
-           Long pedidoDetalleId= db.pedidoDetalleDAO().save(pedidoDetalle);
+            pedidoDetalle.setCantidad(2);
+            Long pedidoDetalleId = db.pedidoDetalleDAO().save(pedidoDetalle);
             pedidoDetalle.setId(pedidoDetalleId);
             Log.e("PedidoDetalle", pedidoDetalle.toString());
 

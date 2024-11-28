@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvNombreNegocio"
+            android:id="@+id/tvProducto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Antares"
@@ -35,22 +35,22 @@
             app:layout_constraintTop_toBottomOf="@+id/nroPedido" />
 
         <TextView
-            android:id="@+id/tvDireccionNegocio1"
+            android:id="@+id/tvCantidad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="direccion"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNombreNegocio" />
+            app:layout_constraintTop_toBottomOf="@+id/tvProducto" />
 
         <TextView
-            android:id="@+id/tvNombreCliente"
+            android:id="@+id/tvPrecio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Exequiel Raineri"
             android:textColor="@color/negro"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvDireccionNegocio1" />
+            app:layout_constraintTop_toBottomOf="@id/tvCantidad" />
 
         <TextView
             android:id="@+id/tvDireccionCliente"
@@ -59,7 +59,7 @@
             android:text="Aristobulo del valle"
             android:textColor="@color/negro"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNombreCliente" />
+            app:layout_constraintTop_toBottomOf="@+id/tvPrecio" />
 
         <TextView
             android:id="@+id/tvEstado"

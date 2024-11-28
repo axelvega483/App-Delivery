@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,23 +14,26 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.delivery.R;
-import com.example.delivery.data.dao.PedidoDAO;
 import com.example.delivery.data.database.DatabaseApp;
 import com.example.delivery.data.model.Pedido;
+import com.example.delivery.data.model.PedidoDetalle;
+import com.example.delivery.ui.adapters.AdapterPedidoDetalle;
+import com.example.delivery.ui.viewmodel.PedidoDetalleViewModel;
+import com.example.delivery.ui.viewmodel.PedidosViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.Executors;
 
 public class VerPedidoFragment extends Fragment {
     private TextView tvNroPedido, tvNombreNegocio, tvDireccionNegocio, tvNombreCliente, tvDireccionCliente, tvFechaPedido, tvEstadoPedido;
     private ListView listViewDetalle;
     private Button btnConfirmarPedido, btnVolver;
+
+    private AdapterPedidoDetalle adapter;
+    private ArrayList<PedidoDetalle> pedidoDetalles;
     private DatabaseApp db;
-    private PedidoDAO pedidoDAO;
-
-    private ArrayList<Pedido> pedido;
-
     private Context context;
     private String id;
     private String nombreNegocio;
@@ -119,13 +123,22 @@ public class VerPedidoFragment extends Fragment {
     private void init(View rootView) {
         tvNroPedido = rootView.findViewById(R.id.tvNroPedido);
         tvFechaPedido = rootView.findViewById(R.id.tvFechaPedido);
-        tvNombreNegocio = rootView.findViewById(R.id.tvNombreNegocio);
+        tvNombreNegocio = rootView.findViewById(R.id.tvProducto);
         tvDireccionNegocio = rootView.findViewById(R.id.tvDireccionNegocio);
-        tvNombreCliente = rootView.findViewById(R.id.tvNombreCliente);
+        tvNombreCliente = rootView.findViewById(R.id.tvPrecio);
         tvDireccionCliente = rootView.findViewById(R.id.tvDireccionCliente);
         btnConfirmarPedido = rootView.findViewById(R.id.btnConfirmarPedido);
         btnVolver = rootView.findViewById(R.id.btnVolver);
         listViewDetalle = rootView.findViewById(R.id.listViewDetalle);
         tvEstadoPedido = rootView.findViewById(R.id.tvEstadoPedido);
+
+        PedidoDetalleViewModel pedidoDetalleViewModel = new ViewModelProvider(this).get(PedidoDetalleViewModel.class);
+
+        Executors.newSingleThreadExecutor().execute(() -> {
+                db = DatabaseApp.getInstance(getContext());
+                pedidoDetalles = (ArrayList<PedidoDetalle>) db.pedidoDetalleDAO().findAllList();
+                adapter = new AdapterPedidoDetalle(getContext(), R.layout.item_list_pedidodetalle, pedidoDetalles, pedidoDetalleViewModel);
+                listViewDetalle.setAdapter(adapter);
+        });
     }
 }

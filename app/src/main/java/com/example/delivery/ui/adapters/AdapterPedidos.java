@@ -55,20 +55,20 @@ public class AdapterPedidos extends BaseAdapter {
         TextView nroPedido=v.findViewById(R.id.nroPedido);
         nroPedido.setText(pedido.getId().toString());
 
-        TextView negocio=v.findViewById(R.id.tvNombreNegocio);
+        TextView negocio=v.findViewById(R.id.tvProducto);
         pedidosViewModel.getNegocioById(pedido.getNegocioId()).observe((PrincipalActivity) context, negocioData -> {
             if (negocioData != null && negocioData.getNombre() != null) {
                 negocio.setText(negocioData.getNombre());
             }
         });
-        TextView direccionNegocio=v.findViewById(R.id.tvDireccionNegocio1);
+        TextView direccionNegocio=v.findViewById(R.id.tvCantidad);
         pedidosViewModel.getNegocioById(pedido.getNegocioId()).observe((PrincipalActivity) context, negocioData -> {
             if (negocioData != null && negocioData.getNombre() != null) {
                 direccionNegocio.setText(negocioData.getDireccion().getDireccion());
             }
         });
 
-        TextView cliente=v.findViewById(R.id.tvNombreCliente);
+        TextView cliente=v.findViewById(R.id.tvPrecio);
         pedidosViewModel.getClienteById(pedido.getClienteId()).observe((PrincipalActivity) context, clienteData -> {
             if (clienteData != null && clienteData.getNombre() != null) {
                 cliente.setText(clienteData.getNombre());

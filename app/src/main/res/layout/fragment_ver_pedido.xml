@@ -49,7 +49,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvNroPedido" />
 
         <TextView
-            android:id="@+id/tvNombreNegocio"
+            android:id="@+id/tvProducto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -68,10 +68,10 @@
             android:textColor="@color/negro"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNombreNegocio" />
+            app:layout_constraintTop_toBottomOf="@+id/tvProducto" />
 
         <TextView
-            android:id="@+id/tvNombreCliente"
+            android:id="@+id/tvPrecio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -90,7 +90,7 @@
             android:textColor="@color/negro"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNombreCliente" />
+            app:layout_constraintTop_toBottomOf="@+id/tvPrecio" />
 
 
         <TextView

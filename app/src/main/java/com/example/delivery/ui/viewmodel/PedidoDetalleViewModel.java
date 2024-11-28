@@ -10,6 +10,7 @@ import androidx.lifecycle.LiveData;
 import com.example.delivery.data.dao.PedidoDetalleDAO;
 import com.example.delivery.data.database.DatabaseApp;
 import com.example.delivery.data.model.PedidoDetalle;
+import com.example.delivery.data.model.Producto;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -27,12 +28,7 @@ public class PedidoDetalleViewModel extends AndroidViewModel {
     // ExecutorService para ejecutar tareas en segundo plano.
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-    /**
-     * Constructor de la clase.
-     * Inicializa el DAO para acceder a los datos de `PedidoDetalle`.
-     *
-     * @param application Contexto de la aplicación.
-     */
+
     public PedidoDetalleViewModel(@NonNull Application application) {
         super(application);
         // Obtiene la instancia de la base de datos y el DAO de `PedidoDetalle`.
@@ -122,6 +118,12 @@ public class PedidoDetalleViewModel extends AndroidViewModel {
             }
         });
     }
+
+    public LiveData<Producto> getProductoById(Long producto) {
+        return pedidoDetalleDAO.getProductoById(producto);
+    }
+
+
 }
 
 /**
