@@ -18,6 +18,7 @@ import com.example.delivery.data.model.Repartidor;
 import com.example.delivery.ui.fragments.PedidoAceptadoFragment;
 import com.example.delivery.ui.fragments.PedidosFragment;
 import com.example.delivery.ui.fragments.PerfilFragment;
+import com.example.delivery.ui.viewmodel.PedidosViewModel;
 import com.example.delivery.ui.viewmodel.RepartidorViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -25,6 +26,7 @@ import com.google.android.material.navigation.NavigationBarView;
 public class PrincipalActivity extends AppCompatActivity {
     private BottomNavigationView btnNav;
     private RepartidorViewModel repartidorViewModel; // Instancia del ViewModel
+    private PedidosViewModel pedidosViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +51,13 @@ public class PrincipalActivity extends AppCompatActivity {
         repartidorViewModel.setRepartidorLogueado(repartidor);
         Log.e("repartidorrrrrr: ", repartidor.toString());
         openFragment(PedidosFragment.newInstance());
+
     }
 
     // Inicializa los componentes
     private void init() {
-        repartidorViewModel = new ViewModelProvider(this).get(RepartidorViewModel.class);
+        repartidorViewModel = new ViewModelProvider((PrincipalActivity.this)).get(RepartidorViewModel.class);
+        pedidosViewModel = new ViewModelProvider((PrincipalActivity.this)).get(PedidosViewModel.class);
         btnNav = findViewById(id.btnNav);
     }
 
@@ -67,7 +71,12 @@ public class PrincipalActivity extends AppCompatActivity {
                 if (itemId == id.nav_principal) {
                     openFragment(PedidosFragment.newInstance());
                 } else if (itemId == id.nav_verPedidos) {
-                    openFragment(PedidoAceptadoFragment.newInstance());
+                    if(pedidosViewModel == null){
+                        Toast.makeText(getApplicationContext(), "Por favor, seleccione un pedido.", Toast.LENGTH_SHORT).show();
+                    }else{
+                        openFragment(PedidoAceptadoFragment.newInstance());
+                    }
+
                 } else if (itemId == id.nav_perfil) {
                     openFragment(PerfilFragment.newInstance());
                 }

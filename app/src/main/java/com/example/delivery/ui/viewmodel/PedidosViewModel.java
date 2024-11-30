@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.delivery.data.dao.ClienteDAO;
@@ -16,6 +17,7 @@ import com.example.delivery.data.database.DatabaseApp;
 import com.example.delivery.data.model.Cliente;
 import com.example.delivery.data.model.Negocio;
 import com.example.delivery.data.model.Pedido;
+import com.example.delivery.data.model.Repartidor;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -26,7 +28,7 @@ public class PedidosViewModel extends AndroidViewModel {
     private final ClienteDAO clienteDAO;
     private final NegocioDAO negocioDAO;
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
-
+    private final MutableLiveData<Pedido> pedidoActual = new MutableLiveData<>();
 
     public PedidosViewModel(@NonNull Application application) {
         super(application);
@@ -96,9 +98,20 @@ public class PedidosViewModel extends AndroidViewModel {
         });
     }
 
+    public void setPedido(Pedido ped) {
+        if (ped != null) {
+            Log.e("setRepa", ped.toString());
+            pedidoActual.setValue(ped);
+            Log.e("setRepaLogueado", pedidoActual.getValue().toString());
+        } else {
+            Log.e("RepartidorViewModel", "Intento de establecer un repartidor nulo");
+        }
+    }
+
     public LiveData<Cliente> getClienteById(Long clienteId) {
         return clienteDAO.getClienteById(clienteId);
     }
+
     public LiveData<Negocio> getNegocioById(Long negocioId) {
         return negocioDAO.getNegocioById(negocioId);
     }
