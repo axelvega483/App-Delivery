@@ -6,6 +6,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import androidx.room.Relation;
 import androidx.room.TypeConverters;
 
 import com.example.delivery.util.DateConverter;
@@ -34,17 +35,18 @@ public class Pedido {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     private Long id;
-    @ColumnInfo(name = "cliente_id")
+    @ColumnInfo(name = "cliente_id", index = true)
     private Long clienteId;
-    @ColumnInfo(name = "negocio_id")
+    @ColumnInfo(name = "negocio_id", index = true)
     private Long negocioId;
-    @ColumnInfo(name = "repartidor_id")
+    @ColumnInfo(name = "repartidor_id", index = true)
     private Long repartidorId;
     @ColumnInfo(name = "fecha_pedido")
     private Date fechaPedido;
     private String estado;
 
-    public Pedido( Long clienteId, Long negocioId, Long repartidorId, Date fechaPedido, String estado) {
+
+    public Pedido(Long clienteId, Long negocioId, Long repartidorId, Date fechaPedido, String estado) {
         this.clienteId = clienteId;
         this.negocioId = negocioId;
         this.repartidorId = repartidorId;
@@ -101,5 +103,17 @@ public class Pedido {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "id=" + id +
+                ", clienteId=" + clienteId +
+                ", negocioId=" + negocioId +
+                ", repartidorId=" + repartidorId +
+                ", fechaPedido=" + fechaPedido +
+                ", estado='" + estado + '\'' +
+                '}';
     }
 }

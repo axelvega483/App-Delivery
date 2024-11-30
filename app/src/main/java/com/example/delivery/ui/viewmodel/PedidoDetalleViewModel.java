@@ -123,21 +123,10 @@ public class PedidoDetalleViewModel extends AndroidViewModel {
         return pedidoDetalleDAO.getProductoById(producto);
     }
 
+    public LiveData<List<PedidoDetalle>> getDetalleByPedido(Long id) {
+        return pedidoDetalleDAO.findByPedido(id);
+    }
+
 
 }
 
-/**
- * **Beneficios de esta clase:**
- *
- * - **Gestión eficiente de datos:** Permite gestionar los detalles de los pedidos sin mezclar la lógica de negocio con la interfaz de usuario.
- * - **Reactividad:** Utiliza `LiveData` para que los cambios en los detalles de los pedidos se reflejen automáticamente en la interfaz de usuario.
- * - **Ejecución en segundo plano:** Las operaciones de base de datos se ejecutan en un hilo separado utilizando `ExecutorService`, evitando bloqueos en el hilo principal.
- * - **Modularidad:** Centraliza la lógica de negocio de los detalles de pedido, lo que facilita su reutilización y mantenimiento.
- *
- * **Información adicional relevante:**
- *
- * 1. **Relación con otras entidades:**
- *    - `PedidoDetalle` tiene relaciones con las entidades `Pedido` y `Producto`, permitiendo rastrear los detalles de cada pedido con sus respectivos productos.
- * 3. **Escalabilidad:**
- *    - Esta clase puede ampliarse para agregar más detalles al pedido, como descuentos, impuestos o condiciones especiales de envío.
- */

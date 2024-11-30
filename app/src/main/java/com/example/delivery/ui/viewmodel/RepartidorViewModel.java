@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.delivery.data.dao.RepartidorDAO;
 import com.example.delivery.data.database.DatabaseApp;
+import com.example.delivery.data.model.Pedido;
 import com.example.delivery.data.model.Repartidor;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class RepartidorViewModel extends AndroidViewModel {
     private final RepartidorDAO repartidorDAO;
     private final ExecutorService executorService = Executors.newSingleThreadExecutor(); //Gestiona tareas en segundo plano para evitar que las operaciones de base de datos bloqueen el hilo principal (UI thread).
     private final MutableLiveData<Repartidor> repartidorLogueado = new MutableLiveData<>(); //Variable observable para almacenar el repartidor que ha iniciado sesión. La UI puede observar los cambios de estado de esta variable.
+    private final MutableLiveData<Pedido> pedidoActual = new MutableLiveData<>();
 
     public RepartidorViewModel(@NonNull Application application) {
         super(application);
@@ -110,4 +112,16 @@ public class RepartidorViewModel extends AndroidViewModel {
     }
 
 
+    public LiveData<Pedido> getPedidoActual() {
+        return pedidoActual;
+    }
+
+    public void setPedidoActual(Pedido pedido) {
+        if (pedidoActual != null) {
+            pedidoActual.setValue(pedido);
+            Log.e("setPedidoActual", pedidoActual.getValue().toString());
+        } else {
+            Log.e("RepartidorViewModel", "El pedido es nulo");
+        }
+    }
 }

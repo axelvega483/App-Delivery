@@ -24,8 +24,7 @@ public class PedidosFragment extends Fragment {
 
     private ListView listView;
     private AdapterPedidos adapter;
-    private ArrayList<Pedido> pedidos;
-    private DatabaseApp db;
+    PedidosViewModel pedidosViewModel;
 
     public PedidosFragment() {
 
@@ -55,19 +54,17 @@ public class PedidosFragment extends Fragment {
     }
 
     private void setearDatos() {
-
+        pedidosViewModel.findAllPedidos().observe(getViewLifecycleOwner(), pedidos -> {
+            adapter = new AdapterPedidos(getContext(), R.layout.item_list_pedido, (ArrayList<Pedido>) pedidos, pedidosViewModel);
+            listView.setAdapter(adapter);
+        });
     }
 
     private void init(View rootView) {
         listView = rootView.findViewById(R.id.listView);
-        PedidosViewModel pedidosViewModel = new ViewModelProvider(this).get(PedidosViewModel.class);
+        pedidosViewModel = new ViewModelProvider(this).get(PedidosViewModel.class);
 
-        Executors.newSingleThreadExecutor().execute(() -> {
-            db = DatabaseApp.getInstance(getContext());
-            pedidos = (ArrayList<Pedido>) db.pedidoDAO().findAllList();
-            adapter = new AdapterPedidos(getContext(), R.layout.item_list_pedido, pedidos,pedidosViewModel);
-            listView.setAdapter(adapter);
-        });
+
     }
 
 

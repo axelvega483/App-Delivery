@@ -53,7 +53,7 @@ public class AdapterPedidos extends BaseAdapter {
 
         Pedido pedido=pedidos.get(position);
         TextView nroPedido=v.findViewById(R.id.nroPedido);
-        nroPedido.setText(pedido.getId().toString());
+        nroPedido.setText("Pedido #"+pedido.getId().toString());
 
         TextView negocio=v.findViewById(R.id.tvProducto);
         pedidosViewModel.getNegocioById(pedido.getNegocioId()).observe((PrincipalActivity) context, negocioData -> {
@@ -83,7 +83,7 @@ public class AdapterPedidos extends BaseAdapter {
         });
 
         TextView estado=v.findViewById(R.id.tvEstado);
-        estado.setText("PENDIENTE");
+        estado.setText(pedido.getEstado());
 
         // En AdapterPedidos.java
         CardView cardView = v.findViewById(R.id.cardViewPedido);

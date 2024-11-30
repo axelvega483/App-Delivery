@@ -24,14 +24,14 @@ public class PedidoDetalle {
 
     @PrimaryKey(autoGenerate = true)
     private Long id;
-    @ColumnInfo(name = "pedido_id")
+    @ColumnInfo(name = "pedido_id", index = true)
     private Long pedidoId;
-    @ColumnInfo(name = "producto_id")
+    @ColumnInfo(name = "producto_id", index = true)
     private Long productoId;
     private int cantidad;
     private double subtotal;
 
-    public PedidoDetalle( Long pedidoId, Long productoId, int cantidad, double subtotal) {
+    public PedidoDetalle(Long pedidoId, Long productoId, int cantidad, double subtotal) {
         this.pedidoId = pedidoId;
         this.productoId = productoId;
         this.cantidad = cantidad;

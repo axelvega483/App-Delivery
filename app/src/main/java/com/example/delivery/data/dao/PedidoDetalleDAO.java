@@ -35,4 +35,7 @@ public interface PedidoDetalleDAO {
 
     @Query("select * from pedido_detalle")
     List<PedidoDetalle> findAllList();
+
+    @Query("select * from pedido_detalle where pedido_id=:id")
+    LiveData<List<PedidoDetalle>> findByPedido(Long id);
 }

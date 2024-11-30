@@ -6,13 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.delivery.data.model.Repartidor;
+import com.example.delivery.ui.fragments.PedidoAceptadoFragment;
 import com.example.delivery.ui.fragments.PedidosFragment;
 import com.example.delivery.ui.fragments.PerfilFragment;
 import com.example.delivery.ui.viewmodel.RepartidorViewModel;
@@ -44,7 +47,7 @@ public class PrincipalActivity extends AppCompatActivity {
         // Crear el objeto Repartidor con los datos recibidos
         Repartidor repartidor = new Repartidor(nombre, apellido, direccion, dni, telefono, password, email);
         repartidorViewModel.setRepartidorLogueado(repartidor);
-        Log.e("repartidorrrrrr: ",repartidor.toString());
+        Log.e("repartidorrrrrr: ", repartidor.toString());
         openFragment(PedidosFragment.newInstance());
     }
 
@@ -64,7 +67,7 @@ public class PrincipalActivity extends AppCompatActivity {
                 if (itemId == id.nav_principal) {
                     openFragment(PedidosFragment.newInstance());
                 } else if (itemId == id.nav_verPedidos) {
-                    // Aquí puedes añadir otro fragmento si es necesario
+                    openFragment(PedidoAceptadoFragment.newInstance());
                 } else if (itemId == id.nav_perfil) {
                     openFragment(PerfilFragment.newInstance());
                 }

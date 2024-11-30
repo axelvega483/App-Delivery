@@ -22,7 +22,7 @@ public interface NegocioDAO {
     LiveData<Negocio> findById(Long id);
 
     @Insert
-    Long save(Negocio negocios);
+    Long save(Negocio negocio);
 
     @Delete
     void delete(Negocio negocio);

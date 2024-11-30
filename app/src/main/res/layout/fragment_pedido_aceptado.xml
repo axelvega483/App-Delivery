@@ -24,34 +24,33 @@
             android:id="@+id/tvCodigoEntrega"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginStart="8dp"
             android:text="CODIGO:"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mapViewPedido" />
+            tools:layout_editor_absoluteY="452dp" />
 
         <EditText
             android:id="@+id/edCodigoEntrega"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:ems="10"
             android:inputType="text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCodigoEntrega"
+            tools:layout_editor_absoluteY="481dp"
             tools:text="33399" />
 
         <Button
             android:id="@+id/btnConfirmarEntrega"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
             android:backgroundTint="@color/azulClaro"
             android:text="Confirmar Entrega"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edCodigoEntrega">
+            tools:layout_editor_absoluteY="533dp">
 
         </Button>
 
@@ -67,6 +66,33 @@
 
         </Button>
 
+        <TextView
+            android:id="@+id/tvNroPedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="20dp"
+            android:text="Pedido #4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mapViewPedido" />
+
+        <TextView
+            android:id="@+id/tvNombreCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="Cliente"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNroPedido" />
+
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="Total"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreCliente" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

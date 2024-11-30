@@ -1,25 +1,34 @@
 package com.example.delivery.ui.fragments;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.security.ConfirmationPrompt;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.delivery.R;
 import com.example.delivery.data.database.DatabaseApp;
+import com.example.delivery.data.model.Cliente;
+import com.example.delivery.data.model.Negocio;
 import com.example.delivery.data.model.Pedido;
 import com.example.delivery.data.model.PedidoDetalle;
 import com.example.delivery.ui.adapters.AdapterPedidoDetalle;
 import com.example.delivery.ui.viewmodel.PedidoDetalleViewModel;
 import com.example.delivery.ui.viewmodel.PedidosViewModel;
+import com.example.delivery.ui.viewmodel.RepartidorViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,13 +45,19 @@ public class VerPedidoFragment extends Fragment {
     private DatabaseApp db;
     private Context context;
     private String id;
-    private String nombreNegocio;
-    private String direccionNegocio;
-    private String nombreCliente;
-    private String direccionCliente;
-    private String estado;
+    //private String nombreNegocio;
+    //private String direccionNegocio;
+    //private String nombreCliente;
+    //private String direccionCliente;
+    //private String estado;
+    private Pedido pedido;
+    private Negocio negocio;
+    private Cliente cliente;
+    PedidoDetalleViewModel pedidoDetalleViewModel;
+    PedidosViewModel pedidosViewModel;
+    RepartidorViewModel repartidorViewModel;
 
-    public static VerPedidoFragment newInstance(String id,String negocio,String direccionNegocio ,String cliente,String direccionCliente, String estado) {
+    public static VerPedidoFragment newInstance(String id, String negocio, String direccionNegocio, String cliente, String direccionCliente, String estado) {
         VerPedidoFragment fragment = new VerPedidoFragment();
         Bundle args = new Bundle();
         args.putString("id", id);
@@ -72,16 +87,27 @@ public class VerPedidoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflar el layout para este fragmento
         View rootView = inflater.inflate(R.layout.fragment_ver_pedido, container, false);
+        init(rootView);
         if (getArguments() != null) {
             id = getArguments().getString("id");
-            nombreNegocio = getArguments().getString("nombreNegocio");
-            direccionNegocio = getArguments().getString("direccionNegocio");
-            nombreCliente = getArguments().getString("nombreCliente");
-            direccionCliente = getArguments().getString("direccionCliente");
-            estado = getArguments().getString("estado");
+            db.pedidoDAO().findById(Long.valueOf(id)).observe(getViewLifecycleOwner(), pedido -> {
+                this.pedido = pedido;
+
+                if (pedido != null) {
+                    db.negocioDAO().findById(pedido.getNegocioId()).observe(getViewLifecycleOwner(), negocio -> {
+                        this.negocio = negocio;
+                        setearDatos();
+                    });
+                    db.clienteDAO().findById(pedido.getClienteId()).observe(getViewLifecycleOwner(), cliente -> {
+                        this.cliente = cliente;
+                        setearDatos();
+                    });
+
+                }
+            });
         }
-        init(rootView);
-        setearDatos();
+
+
         initListener();
         return rootView;
     }
@@ -90,11 +116,27 @@ public class VerPedidoFragment extends Fragment {
         btnConfirmarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(requireContext());
+                alert.setTitle("Tomar este pedido?");
+                alert.setMessage("¿Estas seguro de tomar este pedido?");
+                alert.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        tomarPedido();
+                    }
 
 
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frameContainer, PedidoAceptadoFragment.newInstance())
-                        .commit();
+                });
+                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+
+                    }
+
+
+                });
+                alert.show();
             }
         });
 
@@ -108,19 +150,41 @@ public class VerPedidoFragment extends Fragment {
         });
     }
 
+    private void tomarPedido() {
+        if (pedido!=null){
+            pedido.setEstado("ACTIVO");
+            pedidosViewModel.update(pedido);
+            Toast.makeText(getContext(), "Se tomó un pedido", Toast.LENGTH_SHORT).show();
+            repartidorViewModel.setPedidoActual(pedido);
+        }
+    }
+
     private void setearDatos() {
-        SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        tvNroPedido.setText(id);
-        tvFechaPedido.setText(sf.format(new Date()));
-        tvEstadoPedido.setText(estado);
-        tvNombreNegocio.setText(nombreNegocio);
-        tvDireccionNegocio.setText(direccionNegocio);
-        tvNombreCliente.setText(nombreCliente);
-        tvDireccionCliente.setText(direccionCliente);
+        if (pedido != null && negocio != null && cliente != null) {
+            SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            tvNroPedido.setText("Pedido #" + id);
+            tvFechaPedido.setText(sf.format(pedido.getFechaPedido()));
+            tvEstadoPedido.setText(pedido.getEstado());
+            tvNombreNegocio.setText(negocio.getNombre());
+            tvDireccionNegocio.setText(negocio.getDireccion().getDireccion());
+            tvNombreCliente.setText(cliente.getNombre());
+            tvDireccionCliente.setText(cliente.getDireccion().getDireccion());
+
+
+            pedidoDetalleViewModel.getDetalleByPedido(pedido.getId()).observe(getViewLifecycleOwner(), detalle -> {
+                adapter = new AdapterPedidoDetalle(getContext(), R.layout.item_list_pedidodetalle, (ArrayList<PedidoDetalle>) detalle, pedidoDetalleViewModel);
+                listViewDetalle.setAdapter(adapter);
+            });
+
+        }
 
     }
 
     private void init(View rootView) {
+        pedidoDetalleViewModel = new ViewModelProvider(this).get(PedidoDetalleViewModel.class);
+        pedidosViewModel=new ViewModelProvider(this).get(PedidosViewModel.class);
+        repartidorViewModel=new ViewModelProvider(this).get(RepartidorViewModel.class);
+        db = DatabaseApp.getInstance(getContext());
         tvNroPedido = rootView.findViewById(R.id.tvNroPedido);
         tvFechaPedido = rootView.findViewById(R.id.tvFechaPedido);
         tvNombreNegocio = rootView.findViewById(R.id.tvProducto);
@@ -132,13 +196,6 @@ public class VerPedidoFragment extends Fragment {
         listViewDetalle = rootView.findViewById(R.id.listViewDetalle);
         tvEstadoPedido = rootView.findViewById(R.id.tvEstadoPedido);
 
-        PedidoDetalleViewModel pedidoDetalleViewModel = new ViewModelProvider(this).get(PedidoDetalleViewModel.class);
 
-        Executors.newSingleThreadExecutor().execute(() -> {
-                db = DatabaseApp.getInstance(getContext());
-                pedidoDetalles = (ArrayList<PedidoDetalle>) db.pedidoDetalleDAO().findAllList();
-                adapter = new AdapterPedidoDetalle(getContext(), R.layout.item_list_pedidodetalle, pedidoDetalles, pedidoDetalleViewModel);
-                listViewDetalle.setAdapter(adapter);
-        });
     }
 }
