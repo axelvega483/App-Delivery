@@ -124,6 +124,8 @@ public class PedidosViewModel extends AndroidViewModel {
 
     public LiveData<List<Pedido>> findAllPendiente() {
         return pedidoDAO.findAllPendiente();
-
+    }
+    public LiveData<List<Pedido>> findAllEntregados() {
+        return pedidoDAO.findAllEntregados();
     }
 }

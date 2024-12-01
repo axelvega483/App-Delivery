@@ -34,6 +34,7 @@ public class PedidoAceptadoFragment extends Fragment {
     private RepartidorViewModel repartidorViewModel;
     private PedidoDetalleViewModel pedidoDetalleViewModel;
     private ClienteViewModel clienteViewModel;
+    private PedidosViewModel pedidosViewModel;
     private Pedido pedidoActual;
 
 
@@ -101,7 +102,8 @@ public class PedidoAceptadoFragment extends Fragment {
             public void onClick(View view) {
                 if (pedidoActual.getCodigoEntrega().equals(edCodigoEntrega.getText().toString())) {
                     Toast.makeText(requireActivity(), "Entrega Confirmada", Toast.LENGTH_SHORT).show();
-
+                    pedidoActual.setEstado("Entregado");
+                    pedidosViewModel.update(pedidoActual);
                     repartidorViewModel.setPedidoActual(null);
                     pedidoActual = null;
 
@@ -131,7 +133,7 @@ public class PedidoAceptadoFragment extends Fragment {
         repartidorViewModel = new ViewModelProvider(requireActivity()).get(RepartidorViewModel.class);
         pedidoDetalleViewModel = new ViewModelProvider(requireActivity()).get(PedidoDetalleViewModel.class);
         clienteViewModel = new ViewModelProvider(requireActivity()).get(ClienteViewModel.class);
-
+        pedidosViewModel = new ViewModelProvider(requireActivity()).get(PedidosViewModel.class);
         edCodigoEntrega = root.findViewById(R.id.edCodigoEntrega);
         btnConfirmarEntrega = root.findViewById(R.id.btnConfirmarEntrega);
         btnVolver = root.findViewById(R.id.btnVolver);

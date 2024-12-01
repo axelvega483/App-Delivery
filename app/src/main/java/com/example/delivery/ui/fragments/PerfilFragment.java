@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.delivery.MainActivity;
 import com.example.delivery.R;
 import com.example.delivery.ui.viewmodel.RepartidorViewModel;
+
 import java.util.Locale;
 
 public class PerfilFragment extends Fragment {
@@ -83,7 +84,6 @@ public class PerfilFragment extends Fragment {
                 Log.e("Repartidor", "Repartidor encontrado: " + repartidor.getNombre());
 
 
-
                 tvNombreCompleto.setText(repartidor.getNombre().toUpperCase(Locale.ROOT) + " " + repartidor.getApellido().toUpperCase());
                 edDireccion.setText(repartidor.getDireccion());
                 edDni.setText(repartidor.getDni());
@@ -113,7 +113,9 @@ public class PerfilFragment extends Fragment {
         btnHistorialPedidos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Ver historial de pedidos", Toast.LENGTH_SHORT).show();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameContainer, HistorialPedidosFragment.newInstance())
+                        .commit();
             }
         });
     }

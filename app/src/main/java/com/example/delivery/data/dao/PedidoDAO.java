@@ -36,4 +36,6 @@ public interface PedidoDAO {
     @Query("select * from pedido where estado='Pendiente'")
     LiveData<List<Pedido>> findAllPendiente();
 
+    @Query("select * from pedido where estado='Entregado'")
+    LiveData<List<Pedido>> findAllEntregados();
 }
