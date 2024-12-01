@@ -113,7 +113,6 @@ public class RepartidorViewModel extends AndroidViewModel {
     }
 
     public void setPedidoActual(Pedido pedido) {
-        Log.e("SetPedidoActual", "Pedido: " + pedido.toString());
-        pedidoActual.postValue(pedido);
+        pedidoActual.setValue(pedido);
     }
 }

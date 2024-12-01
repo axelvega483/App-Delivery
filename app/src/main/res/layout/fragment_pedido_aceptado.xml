@@ -25,10 +25,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="76dp"
             android:text="CODIGO:"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="452dp" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTotal" />
 
         <EditText
             android:id="@+id/edCodigoEntrega"
@@ -38,19 +39,20 @@
             android:ems="10"
             android:inputType="text"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="481dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvCodigoEntrega"
             tools:text="33399" />
 
         <Button
             android:id="@+id/btnConfirmarEntrega"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:backgroundTint="@color/azulClaro"
             android:text="Confirmar Entrega"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="533dp">
+            app:layout_constraintTop_toBottomOf="@+id/edCodigoEntrega">
 
         </Button>
 

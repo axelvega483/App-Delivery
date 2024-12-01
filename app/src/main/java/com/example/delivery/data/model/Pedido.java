@@ -44,7 +44,8 @@ public class Pedido {
     @ColumnInfo(name = "fecha_pedido")
     private Date fechaPedido;
     private String estado;
-
+    @ColumnInfo(name = "codigo_entrega")
+    private String codigoEntrega;
 
     public Pedido(Long clienteId, Long negocioId, Long repartidorId, Date fechaPedido, String estado) {
         this.clienteId = clienteId;
@@ -105,6 +106,15 @@ public class Pedido {
         this.estado = estado;
     }
 
+
+    public String getCodigoEntrega() {
+        return codigoEntrega;
+    }
+
+    public void setCodigoEntrega(String codigoEntrega) {
+        this.codigoEntrega = codigoEntrega;
+    }
+
     @Override
     public String toString() {
         return "Pedido{" +
@@ -114,6 +124,7 @@ public class Pedido {
                 ", repartidorId=" + repartidorId +
                 ", fechaPedido=" + fechaPedido +
                 ", estado='" + estado + '\'' +
+                ", codigoEntrega='" + codigoEntrega + '\'' +
                 '}';
     }
 }

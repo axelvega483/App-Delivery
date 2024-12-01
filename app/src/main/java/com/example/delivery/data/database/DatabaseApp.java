@@ -27,6 +27,7 @@ import com.example.delivery.data.model.Repartidor;
 import com.example.delivery.data.model.Seguimiento;
 
 import java.util.Date;
+import java.util.Random;
 import java.util.concurrent.Executors;
 
 @Database(entities = {
@@ -125,19 +126,35 @@ public abstract class DatabaseApp extends RoomDatabase {
             pedido.setNegocioId(negocio.getId());
             pedido.setFechaPedido(new Date());
             pedido.setEstado("Pendiente");
+            pedido.setCodigoEntrega(obtenerRandom());
             Long pedidoId = db.pedidoDAO().save(pedido);
             pedido.setId(pedidoId);
             Log.e("Pedido", pedido.toString());
+
 
             PedidoDetalle pedidoDetalle = new PedidoDetalle();
             pedidoDetalle.setPedidoId(pedido.getId());
             pedidoDetalle.setProductoId(producto.getId());
             pedidoDetalle.setCantidad(2);
+            pedidoDetalle.setSubtotal(producto.getPrecio() * pedidoDetalle.getCantidad());
             Long pedidoDetalleId = db.pedidoDetalleDAO().save(pedidoDetalle);
             pedidoDetalle.setId(pedidoDetalleId);
             Log.e("PedidoDetalle", pedidoDetalle.toString());
 
         });
+    }
+
+    public static String obtenerRandom() {
+        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        StringBuilder codigo = new StringBuilder();
+        Random random = new Random();
+
+        for (int i = 0; i < 6; i++) {
+            int index = random.nextInt(caracteres.length());
+            codigo.append(caracteres.charAt(index));
+        }
+
+        return codigo.toString();
     }
 
 }
