@@ -34,7 +34,6 @@ public class PedidoAceptadoFragment extends Fragment {
     private RepartidorViewModel repartidorViewModel;
     private PedidoDetalleViewModel pedidoDetalleViewModel;
     private ClienteViewModel clienteViewModel;
-    double total = 0.00;
 
 
     public static PedidoAceptadoFragment newInstance() {
@@ -47,43 +46,44 @@ public class PedidoAceptadoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e("PEDIDOACEPTADO-ONCREATE", "CREANDO FRAGMENTO");
-        repartidorViewModel = new ViewModelProvider(this).get(RepartidorViewModel.class);
-        pedidoDetalleViewModel = new ViewModelProvider(this).get(PedidoDetalleViewModel.class);
-        clienteViewModel = new ViewModelProvider(this).get(ClienteViewModel.class);
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflar el layout
         View root = inflater.inflate(R.layout.fragment_pedido_aceptado, container, false);
+
         init(root);
-        Log.e("PEDIDOACEPTADO-ONCREATEview", "CREANDO FRAGMENTO");
         initListener();
         setearDatos();
         return root;
     }
 
     private void setearDatos() {
-        total = 0;
+        // Actualizar datos del pedido
         repartidorViewModel.getPedidoActual().observe(getViewLifecycleOwner(), pedido -> {
+
             tvNroPedido.setText("Pedido #" + pedido.getId());
 
-            pedidoDetalleViewModel.getDetalleByPedido(pedido.getId()).observe(getViewLifecycleOwner(), detalle -> {
-                for (PedidoDetalle d : detalle) {
-                    total += d.getSubtotal();
+            // Obtener detalles del pedido
+            pedidoDetalleViewModel.getDetalleByPedido(pedido.getId()).observe(getViewLifecycleOwner(), detalles -> {
+                double total = 0.0;
+                for (PedidoDetalle detalle : detalles) {
+                    total += detalle.getSubtotal();
+                }
+                tvTotal.setText(String.format("$ %.2f", total));
+            });
+
+            // Obtener datos del cliente
+            clienteViewModel.findById(pedido.getClienteId()).observe(getViewLifecycleOwner(), cliente -> {
+                if (cliente != null) {
+                    tvNombreCliente.setText(cliente.getNombre() + " " + cliente.getApellido());
+                } else {
+                    tvNombreCliente.setText("Cliente no encontrado");
                 }
             });
-
-            clienteViewModel.findById(pedido.getClienteId()).observe(getViewLifecycleOwner(), cliente -> {
-                tvNombreCliente.setText(cliente.getNombre() + " " + cliente.getApellido());
-            });
-            tvTotal.setText(String.valueOf(total));
         });
-
 
     }
 
@@ -106,6 +106,10 @@ public class PedidoAceptadoFragment extends Fragment {
     }
 
     private void init(View root) {
+        // Inicializar ViewModels
+        repartidorViewModel = new ViewModelProvider(requireActivity()).get(RepartidorViewModel.class);
+        pedidoDetalleViewModel = new ViewModelProvider(requireActivity()).get(PedidoDetalleViewModel.class);
+        clienteViewModel = new ViewModelProvider(requireActivity()).get(ClienteViewModel.class);
 
         edCodigoEntrega = root.findViewById(R.id.edCodigoEntrega);
         btnConfirmarEntrega = root.findViewById(R.id.btnConfirmarEntrega);

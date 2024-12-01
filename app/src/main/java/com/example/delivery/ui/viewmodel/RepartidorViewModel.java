@@ -41,7 +41,7 @@ public class RepartidorViewModel extends AndroidViewModel {
     protected void onCleared() {
         super.onCleared();
         if (!executorService.isShutdown()) {
-            executorService.shutdown();
+            executorService.shutdownNow();
             Log.e("ViewModel", "ExecutorService cerrado correctamente");
         } else {
             Log.e("ViewModel", "ExecutorService ya estaba cerrado");
@@ -55,11 +55,7 @@ public class RepartidorViewModel extends AndroidViewModel {
 
     public void setRepartidorLogueado(Repartidor repartidor) {
         if (repartidor != null) {
-            Log.e("setRepa", repartidor.toString());
-            repartidorLogueado.setValue(repartidor);
-            Log.e("setRepaLogueado", repartidorLogueado.getValue().toString());
-        } else {
-            Log.e("RepartidorViewModel", "Intento de establecer un repartidor nulo");
+            repartidorLogueado.postValue(repartidor);
         }
     }
 
@@ -117,11 +113,7 @@ public class RepartidorViewModel extends AndroidViewModel {
     }
 
     public void setPedidoActual(Pedido pedido) {
-        if (pedidoActual != null) {
-            pedidoActual.setValue(pedido);
-            Log.e("setPedidoActual", pedidoActual.getValue().toString());
-        } else {
-            Log.e("RepartidorViewModel", "El pedido es nulo");
-        }
+        Log.e("SetPedidoActual", "Pedido: " + pedido.toString());
+        pedidoActual.postValue(pedido);
     }
 }

@@ -25,6 +25,7 @@ import com.google.android.material.navigation.NavigationBarView;
 public class PrincipalActivity extends AppCompatActivity {
     private BottomNavigationView btnNav;
     private RepartidorViewModel repartidorViewModel; // Instancia del ViewModel
+    private boolean isPedidoActual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,9 @@ public class PrincipalActivity extends AppCompatActivity {
     private void init() {
         repartidorViewModel = new ViewModelProvider(this).get(RepartidorViewModel.class);
         btnNav = findViewById(id.btnNav);
+        repartidorViewModel.getPedidoActual().observe(this, pedido -> {
+            isPedidoActual = pedido != null ? true : false;
+        });
     }
 
     // Captura de eventos de botones
@@ -67,7 +71,12 @@ public class PrincipalActivity extends AppCompatActivity {
                 if (itemId == id.nav_principal) {
                     openFragment(PedidosFragment.newInstance());
                 } else if (itemId == id.nav_verPedidos) {
-                    openFragment(PedidoAceptadoFragment.newInstance());
+                    if (isPedidoActual) {
+                        openFragment(PedidoAceptadoFragment.newInstance());
+                    } else {
+                        Toast.makeText(PrincipalActivity.this, "No hay pedido activo", Toast.LENGTH_SHORT).show();
+                    }
+
                 } else if (itemId == id.nav_perfil) {
                     openFragment(PerfilFragment.newInstance());
                 }

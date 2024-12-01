@@ -151,11 +151,19 @@ public class VerPedidoFragment extends Fragment {
     }
 
     private void tomarPedido() {
-        if (pedido!=null){
+        if (pedido != null) {
             pedido.setEstado("ACTIVO");
             pedidosViewModel.update(pedido);
             Toast.makeText(getContext(), "Se tomó un pedido", Toast.LENGTH_SHORT).show();
             repartidorViewModel.setPedidoActual(pedido);
+
+            repartidorViewModel.getPedidoActual().observe(getViewLifecycleOwner(), pedido -> {
+                if (pedido != null) {
+                    Log.e("PEDIDO ACTUAL TOMAR PEDIDOS", "PEDIDO: " + pedido.toString());
+                } else {
+                    Log.e("PEDIDO ACTUAL", "Pedido es null");
+                }
+            });
         }
     }
 
@@ -181,9 +189,9 @@ public class VerPedidoFragment extends Fragment {
     }
 
     private void init(View rootView) {
-        pedidoDetalleViewModel = new ViewModelProvider(this).get(PedidoDetalleViewModel.class);
-        pedidosViewModel=new ViewModelProvider(this).get(PedidosViewModel.class);
-        repartidorViewModel=new ViewModelProvider(this).get(RepartidorViewModel.class);
+        pedidoDetalleViewModel = new ViewModelProvider(requireActivity()).get(PedidoDetalleViewModel.class);
+        pedidosViewModel = new ViewModelProvider(requireActivity()).get(PedidosViewModel.class);
+        repartidorViewModel = new ViewModelProvider(requireActivity()).get(RepartidorViewModel.class);
         db = DatabaseApp.getInstance(getContext());
         tvNroPedido = rootView.findViewById(R.id.tvNroPedido);
         tvFechaPedido = rootView.findViewById(R.id.tvFechaPedido);

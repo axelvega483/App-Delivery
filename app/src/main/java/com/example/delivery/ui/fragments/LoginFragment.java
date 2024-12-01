@@ -98,7 +98,6 @@ public class LoginFragment extends Fragment {
                 Toast.makeText(getActivity(), "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
             } else {
                 repartidorViewModel.setRepartidorLogueado(repartidor);
-                Log.e("setRepaLogueado", repartidorViewModel.getRepartidorLogueado().getValue().toString());
                 Toast.makeText(getActivity(), "Bienvenido " + repartidor.getNombre(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), PrincipalActivity.class);
 

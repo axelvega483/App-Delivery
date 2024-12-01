@@ -62,7 +62,7 @@ public class PedidosFragment extends Fragment {
 
     private void init(View rootView) {
         listView = rootView.findViewById(R.id.listView);
-        pedidosViewModel = new ViewModelProvider(this).get(PedidosViewModel.class);
+        pedidosViewModel = new ViewModelProvider(requireActivity()).get(PedidosViewModel.class);
 
 
     }
