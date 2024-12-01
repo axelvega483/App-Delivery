@@ -16,10 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.delivery.R;
-import com.example.delivery.data.model.Cliente;
 import com.example.delivery.data.model.Pedido;
-import com.example.delivery.data.model.PedidoDetalle;
-import com.example.delivery.data.model.Repartidor;
 import com.example.delivery.ui.viewmodel.ClienteViewModel;
 import com.example.delivery.ui.viewmodel.PedidoDetalleViewModel;
 import com.example.delivery.ui.viewmodel.PedidosViewModel;
@@ -55,6 +52,7 @@ public class PedidoAceptadoFragment extends Fragment {
         // Asegúrate de inicializar el ViewModel aquí
         pedidosViewModel = new ViewModelProvider(requireActivity()).get(PedidosViewModel.class);
 
+
     }
 
     @Override
@@ -65,31 +63,30 @@ public class PedidoAceptadoFragment extends Fragment {
         // Solo inicializamos si no se ha hecho ya
         init(root);
         initListener();
-        Log.d("PedidoAceptadoFragment", "Pedido ID: " + pedidoId);
         setearDatos();
-
-        Log.e("PEDIDOACEPTADO-ONCREATEview", "CREANDO FRAGMENTO");
         return root;
     }
 
-
     private void setearDatos() {
-        if (getArguments() != null) {
-            pedidoId = getArguments().getLong("pedidoId");
-            Log.e("PEDDDDDIDO", pedidoId.toString());
-            pedidosViewModel.findById(pedidoId).observe(requireActivity(), pedido -> {
-                Log.e("asdasdasd", pedidoId.toString());
-                pedidosViewModel.setPedido(pedido);
-            });
-        }
-        Log.e("llega el pedido?", pedidoId.toString());
-        pedidosViewModel.findById(pedidoId).observe(requireActivity(), pedido -> {
+        Pedido pedido = pedidosViewModel.getPedidoActual().getValue();
+        if (pedido != null) {
             tvNroPedido.setText(pedido.getId().toString());
-            clienteViewModel.findById(pedido.getClienteId()).observe(getViewLifecycleOwner(), cliente -> {
-                tvNombreCliente.setText(cliente.getNombre() + " " + cliente.getApellido());
-            });
-        });
+            // Resto de la lógica
+        } else {
+            // Si no, obténlo desde la base de datos
+            if (getArguments() != null) {
+                pedidoId = getArguments().getLong("pedidoId");
+                Log.e("PEDDDDDIDO", pedidoId.toString());
+                pedidosViewModel.findById(pedidoId).observe(requireActivity(), pedidoFromDb -> {
+                    if (pedidoFromDb != null) {
+                        pedidosViewModel.setPedido(pedidoFromDb);
+                        tvNroPedido.setText(pedidoFromDb.getId().toString());
+                    }
+                });
+            }
+        }
     }
+
 
 
     private void initListener() {
@@ -109,9 +106,9 @@ public class PedidoAceptadoFragment extends Fragment {
     }
 
     private void init(View root) {
-        repartidorViewModel = new ViewModelProvider(this).get(RepartidorViewModel.class);
-        pedidoDetalleViewModel = new ViewModelProvider(this).get(PedidoDetalleViewModel.class);
-        clienteViewModel = new ViewModelProvider(this).get(ClienteViewModel.class);
+        repartidorViewModel = new ViewModelProvider(requireActivity()).get(RepartidorViewModel.class);
+        pedidoDetalleViewModel = new ViewModelProvider(requireActivity()).get(PedidoDetalleViewModel.class);
+        clienteViewModel = new ViewModelProvider(requireActivity()).get(ClienteViewModel.class);
         edCodigoEntrega = root.findViewById(R.id.edCodigoEntrega);
         btnConfirmarEntrega = root.findViewById(R.id.btnConfirmarEntrega);
         btnVolver = root.findViewById(R.id.btnVolver);

@@ -30,6 +30,8 @@ public class PedidosViewModel extends AndroidViewModel {
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
     private final MutableLiveData<Pedido> pedidoActual = new MutableLiveData<>();
 
+
+
     public PedidosViewModel(@NonNull Application application) {
         super(application);
         DatabaseApp db = DatabaseApp.getInstance(application);
@@ -108,6 +110,10 @@ public class PedidosViewModel extends AndroidViewModel {
         }
     }
 
+    public MutableLiveData<Pedido> getPedidoActual() {
+        return pedidoActual;
+    }
+
     public LiveData<Cliente> getClienteById(Long clienteId) {
         return clienteDAO.getClienteById(clienteId);
     }
@@ -116,4 +122,8 @@ public class PedidosViewModel extends AndroidViewModel {
         return negocioDAO.getNegocioById(negocioId);
     }
 
+    public LiveData<List<Pedido>> findAllPendiente() {
+        return pedidoDAO.findAllPendiente();
+
+    }
 }

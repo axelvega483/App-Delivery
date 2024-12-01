@@ -35,8 +35,6 @@ import com.example.delivery.ui.viewmodel.RepartidorViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.concurrent.Executors;
 
 public class VerPedidoFragment extends Fragment {
     private TextView tvNroPedido, tvNombreNegocio, tvDireccionNegocio, tvNombreCliente, tvDireccionCliente, tvFechaPedido, tvEstadoPedido;
@@ -132,11 +130,7 @@ public class VerPedidoFragment extends Fragment {
                 alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
-
                     }
-
-
                 });
                 alert.show();
             }
