@@ -99,21 +99,26 @@ public class VerPedidoFragment extends Fragment {
         btnConfirmarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(requireContext());
-                alert.setTitle("Tomar este pedido?");
-                alert.setMessage("¿Estas seguro de tomar este pedido?");
-                alert.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        tomarPedido();
-                    }
-                });
-                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                    }
-                });
-                alert.show();
+                if (repartidorViewModel.getPedidoActual().getValue() == null) {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(requireContext());
+                    alert.setTitle("Tomar este pedido?");
+                    alert.setMessage("¿Estas seguro de tomar este pedido?");
+                    alert.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            tomarPedido();
+                        }
+                    });
+                    alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+                    alert.show();
+                } else {
+                    Toast.makeText(requireActivity(), "Ya hay un pedido activo", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -137,7 +142,6 @@ public class VerPedidoFragment extends Fragment {
     }
 
     private void setearDatos() {
-
 
         if (pedido != null && negocio != null && cliente != null) {
             SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
