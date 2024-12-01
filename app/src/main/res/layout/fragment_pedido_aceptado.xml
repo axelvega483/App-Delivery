@@ -27,6 +27,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="76dp"
             android:text="CODIGO:"
+            android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTotal" />
@@ -38,6 +39,7 @@
             android:layout_marginStart="8dp"
             android:ems="10"
             android:inputType="text"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvCodigoEntrega"
             tools:text="33399" />
@@ -75,6 +77,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="20dp"
             android:text="Pedido #4"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mapViewPedido" />
 
@@ -83,6 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:textColor="@color/black"
             android:text="Cliente"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNroPedido" />
@@ -93,6 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:text="Total"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNombreCliente" />
     </androidx.constraintlayout.widget.ConstraintLayout>
