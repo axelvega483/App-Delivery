@@ -1,5 +1,6 @@
 package com.example.delivery.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,9 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.delivery.R;
-import com.example.delivery.data.model.Cliente;
 import com.example.delivery.data.model.Pedido;
-import com.example.delivery.data.model.PedidoDetalle;
 import com.example.delivery.ui.viewmodel.ClienteViewModel;
 import com.example.delivery.ui.viewmodel.PedidoDetalleViewModel;
 import com.example.delivery.ui.viewmodel.PedidosViewModel;
@@ -34,6 +33,11 @@ public class PedidoAceptadoFragment extends Fragment {
     private RepartidorViewModel repartidorViewModel;
     private PedidoDetalleViewModel pedidoDetalleViewModel;
     private ClienteViewModel clienteViewModel;
+<<<<<<< HEAD
+=======
+    private PedidosViewModel pedidosViewModel;
+    private Long pedidoId;
+>>>>>>> f42bb743f8814cf6ebf96134ddd082d36c63a5a9
 
 
     public static PedidoAceptadoFragment newInstance() {
@@ -46,6 +50,7 @@ public class PedidoAceptadoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
     }
 
     @Override
@@ -54,6 +59,22 @@ public class PedidoAceptadoFragment extends Fragment {
         // Inflar el layout
         View root = inflater.inflate(R.layout.fragment_pedido_aceptado, container, false);
 
+=======
+        Log.e("PEDIDOACEPTADO-ONCREATE", "CREANDO FRAGMENTO");
+
+        // Asegúrate de inicializar el ViewModel aquí
+        pedidosViewModel = new ViewModelProvider(requireActivity()).get(PedidosViewModel.class);
+
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View root = inflater.inflate(R.layout.fragment_pedido_aceptado, container, false);
+
+        // Solo inicializamos si no se ha hecho ya
+>>>>>>> f42bb743f8814cf6ebf96134ddd082d36c63a5a9
         init(root);
         initListener();
         setearDatos();
@@ -61,6 +82,7 @@ public class PedidoAceptadoFragment extends Fragment {
     }
 
     private void setearDatos() {
+<<<<<<< HEAD
         // Actualizar datos del pedido
         repartidorViewModel.getPedidoActual().observe(getViewLifecycleOwner(), pedido -> {
 
@@ -85,7 +107,28 @@ public class PedidoAceptadoFragment extends Fragment {
             });
         });
 
+=======
+        Pedido pedido = pedidosViewModel.getPedidoActual().getValue();
+        if (pedido != null) {
+            tvNroPedido.setText(pedido.getId().toString());
+            // Resto de la lógica
+        } else {
+            // Si no, obténlo desde la base de datos
+            if (getArguments() != null) {
+                pedidoId = getArguments().getLong("pedidoId");
+                Log.e("PEDDDDDIDO", pedidoId.toString());
+                pedidosViewModel.findById(pedidoId).observe(requireActivity(), pedidoFromDb -> {
+                    if (pedidoFromDb != null) {
+                        pedidosViewModel.setPedido(pedidoFromDb);
+                        tvNroPedido.setText(pedidoFromDb.getId().toString());
+                    }
+                });
+            }
+        }
+>>>>>>> f42bb743f8814cf6ebf96134ddd082d36c63a5a9
     }
+
+
 
     private void initListener() {
         btnConfirmarEntrega.setOnClickListener(new View.OnClickListener() {
@@ -98,19 +141,23 @@ public class PedidoAceptadoFragment extends Fragment {
         btnVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frameContainer, PedidosFragment.newInstance())
-                        .commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer, PedidosFragment.newInstance()).commit();
             }
         });
     }
 
     private void init(View root) {
+<<<<<<< HEAD
         // Inicializar ViewModels
         repartidorViewModel = new ViewModelProvider(requireActivity()).get(RepartidorViewModel.class);
         pedidoDetalleViewModel = new ViewModelProvider(requireActivity()).get(PedidoDetalleViewModel.class);
         clienteViewModel = new ViewModelProvider(requireActivity()).get(ClienteViewModel.class);
 
+=======
+        repartidorViewModel = new ViewModelProvider(requireActivity()).get(RepartidorViewModel.class);
+        pedidoDetalleViewModel = new ViewModelProvider(requireActivity()).get(PedidoDetalleViewModel.class);
+        clienteViewModel = new ViewModelProvider(requireActivity()).get(ClienteViewModel.class);
+>>>>>>> f42bb743f8814cf6ebf96134ddd082d36c63a5a9
         edCodigoEntrega = root.findViewById(R.id.edCodigoEntrega);
         btnConfirmarEntrega = root.findViewById(R.id.btnConfirmarEntrega);
         btnVolver = root.findViewById(R.id.btnVolver);
@@ -118,6 +165,5 @@ public class PedidoAceptadoFragment extends Fragment {
         tvNombreCliente = root.findViewById(R.id.tvNombreCliente);
         tvNroPedido = root.findViewById(R.id.tvNroPedido);
         tvTotal = root.findViewById(R.id.tvTotal);
-
     }
 }

@@ -54,9 +54,13 @@ public class PedidosFragment extends Fragment {
     }
 
     private void setearDatos() {
-        pedidosViewModel.findAllPedidos().observe(getViewLifecycleOwner(), pedidos -> {
-            adapter = new AdapterPedidos(getContext(), R.layout.item_list_pedido, (ArrayList<Pedido>) pedidos, pedidosViewModel);
-            listView.setAdapter(adapter);
+//        pedidosViewModel.findAllPedidos().observe(getViewLifecycleOwner(), pedidos -> {
+//            adapter = new AdapterPedidos(getContext(), R.layout.item_list_pedido, (ArrayList<Pedido>) pedidos, pedidosViewModel);
+//            listView.setAdapter(adapter);
+//        });
+        pedidosViewModel.findAllPendiente().observe(getViewLifecycleOwner(), pedidos -> {
+           adapter= new AdapterPedidos(getContext(), R.layout.item_list_pedido, (ArrayList<Pedido>) pedidos, pedidosViewModel);
+           listView.setAdapter(adapter);
         });
     }
 

@@ -3,6 +3,7 @@ package com.example.delivery.ui.fragments;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -19,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.delivery.PrincipalActivity;
 import com.example.delivery.R;
 import com.example.delivery.data.database.DatabaseApp;
 import com.example.delivery.data.model.Cliente;
@@ -26,14 +28,13 @@ import com.example.delivery.data.model.Negocio;
 import com.example.delivery.data.model.Pedido;
 import com.example.delivery.data.model.PedidoDetalle;
 import com.example.delivery.ui.adapters.AdapterPedidoDetalle;
+import com.example.delivery.ui.viewmodel.ClienteViewModel;
 import com.example.delivery.ui.viewmodel.PedidoDetalleViewModel;
 import com.example.delivery.ui.viewmodel.PedidosViewModel;
 import com.example.delivery.ui.viewmodel.RepartidorViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.concurrent.Executors;
 
 public class VerPedidoFragment extends Fragment {
     private TextView tvNroPedido, tvNombreNegocio, tvDireccionNegocio, tvNombreCliente, tvDireccionCliente, tvFechaPedido, tvEstadoPedido;
@@ -56,6 +57,7 @@ public class VerPedidoFragment extends Fragment {
     PedidoDetalleViewModel pedidoDetalleViewModel;
     PedidosViewModel pedidosViewModel;
     RepartidorViewModel repartidorViewModel;
+    ClienteViewModel clienteViewModel;
 
     public static VerPedidoFragment newInstance(String id, String negocio, String direccionNegocio, String cliente, String direccionCliente, String estado) {
         VerPedidoFragment fragment = new VerPedidoFragment();
@@ -124,17 +126,11 @@ public class VerPedidoFragment extends Fragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         tomarPedido();
                     }
-
-
                 });
                 alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
-
                     }
-
-
                 });
                 alert.show();
             }
@@ -151,12 +147,19 @@ public class VerPedidoFragment extends Fragment {
     }
 
     private void tomarPedido() {
+<<<<<<< HEAD
         if (pedido != null) {
+=======
+
+        if (pedido!=null){
+>>>>>>> f42bb743f8814cf6ebf96134ddd082d36c63a5a9
             pedido.setEstado("ACTIVO");
             pedidosViewModel.update(pedido);
             Toast.makeText(getContext(), "Se tomó un pedido", Toast.LENGTH_SHORT).show();
+
             repartidorViewModel.setPedidoActual(pedido);
 
+<<<<<<< HEAD
             repartidorViewModel.getPedidoActual().observe(getViewLifecycleOwner(), pedido -> {
                 if (pedido != null) {
                     Log.e("PEDIDO ACTUAL TOMAR PEDIDOS", "PEDIDO: " + pedido.toString());
@@ -164,6 +167,32 @@ public class VerPedidoFragment extends Fragment {
                     Log.e("PEDIDO ACTUAL", "Pedido es null");
                 }
             });
+=======
+            // Crear el fragmento
+            PedidoAceptadoFragment fragment = PedidoAceptadoFragment.newInstance();
+
+            Bundle bundle = new Bundle();
+            bundle.putLong("pedidoId", pedido.getId());
+            Log.d("tomarPedido", "Pedido ID: " + pedido.getId());
+
+            clienteViewModel.findById(pedido.getClienteId()).observe(getViewLifecycleOwner(), cliente1 -> {
+                    bundle.putString("clienteNombre", cliente1.getNombre());
+                    Log.d("tomarPedido", "Cliente Nombre: " + cliente1.getNombre());
+
+                    Log.e("tomarPedido", "Cliente no encontrado para el pedido.");
+
+
+            });
+
+            fragment.setArguments(bundle);
+
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.frameContainer, fragment)
+                    .addToBackStack(null)
+                    .commit();
+
+
+>>>>>>> f42bb743f8814cf6ebf96134ddd082d36c63a5a9
         }
     }
 
@@ -189,9 +218,16 @@ public class VerPedidoFragment extends Fragment {
     }
 
     private void init(View rootView) {
+<<<<<<< HEAD
         pedidoDetalleViewModel = new ViewModelProvider(requireActivity()).get(PedidoDetalleViewModel.class);
         pedidosViewModel = new ViewModelProvider(requireActivity()).get(PedidosViewModel.class);
         repartidorViewModel = new ViewModelProvider(requireActivity()).get(RepartidorViewModel.class);
+=======
+        clienteViewModel = new ViewModelProvider(requireActivity()).get(ClienteViewModel.class);
+        pedidoDetalleViewModel = new ViewModelProvider(requireActivity()).get(PedidoDetalleViewModel.class);
+        pedidosViewModel=new ViewModelProvider(requireActivity()).get(PedidosViewModel.class);
+        repartidorViewModel=new ViewModelProvider(requireActivity()).get(RepartidorViewModel.class);
+>>>>>>> f42bb743f8814cf6ebf96134ddd082d36c63a5a9
         db = DatabaseApp.getInstance(getContext());
         tvNroPedido = rootView.findViewById(R.id.tvNroPedido);
         tvFechaPedido = rootView.findViewById(R.id.tvFechaPedido);
