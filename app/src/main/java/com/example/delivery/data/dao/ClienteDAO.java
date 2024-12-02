@@ -8,6 +8,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.delivery.data.model.Cliente;
+import com.example.delivery.data.model.Direccion;
 
 import java.util.List;
 
@@ -30,7 +31,6 @@ public interface ClienteDAO {
 
     @Query("SELECT * FROM cliente WHERE id = :clienteId")
     LiveData<Cliente> getClienteById(Long clienteId);
-
 
 
 }

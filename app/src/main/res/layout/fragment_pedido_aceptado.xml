@@ -10,15 +10,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
-        <com.google.android.gms.maps.MapView
+        <fragment
             android:id="@+id/mapViewPedido"
-            android:layout_width="match_parent"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_height="300dp"
+            android:layout_width="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
+
 
         <TextView
             android:id="@+id/tvCodigoEntrega"

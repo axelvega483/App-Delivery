@@ -36,6 +36,7 @@ android {
 
 dependencies {
     implementation("com.google.android.material:material:1.9.0")
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -48,6 +49,7 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.room.common)
     implementation(libs.room.runtime)
+    implementation(libs.play.services.location)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
