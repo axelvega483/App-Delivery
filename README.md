@@ -1,5 +1,4 @@
 # Requerimientos Funcionales Delivery de 🍻 
-River campeon libertadores 2024
 # Integrantes
 -Exequiel Raineri
 -Axel Vega
